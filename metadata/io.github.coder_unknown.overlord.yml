@@ -1,0 +1,38 @@
+Categories:
+  - Games
+License: MIT
+AuthorName: 0xCoderunknown
+SourceCode: https://github.com/0xCoderunknown/overlord-game
+IssueTracker: https://github.com/0xCoderunknown/overlord-game/issues
+
+AutoName: Overlord
+Summary: Post-apocalyptic wasteland expedition & scavenger management RPG
+Description: |-
+  Take command of Vault Bunker 42 in a retro-terminal post-apocalyptic wasteland expedition RPG.
+
+  Manage your roster of scavengers, equip them with makeshift weapons, armor, and medkits, and dispatch them into the irradiated ruins. Monitor their live terminal feeds as they face environmental hazards, encounter hostile mutants, loot scrap metal, and fight for survival.
+
+  Features:
+  * Retro Terminal UI: Atmospheric CRT-styled green phosphor terminal aesthetic.
+  * Dynamic Wasteland Expeditions: Time-based exploration with random encounters, combat, and rare loot drops.
+  * Equipment & Gear Tiers: Weapons and armor from makeshift scrap to pre-war relics.
+  * 100% Free & Open Source: No ads, no analytics, no tracking, and no internet required.
+
+RepoType: git
+Repo: https://github.com/0xCoderunknown/overlord-game.git
+
+Builds:
+  - versionName: 0.1.0
+    versionCode: 1
+    commit: v0.1.0
+    srclib:
+      - flutter@stable
+    prebuild:
+      - $$flutter$$/bin/flutter pub get
+    build:
+      - $$flutter$$/bin/flutter build apk --release
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 0.1.0
+CurrentCode: 1

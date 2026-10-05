@@ -1,0 +1,10 @@
+Take command of Vault Bunker 42 in a retro-terminal post-apocalyptic wasteland expedition RPG.
+
+Manage your roster of brave scavengers, equip them with makeshift weapons, armor, and medkits, and dispatch them into the irradiated ruins. Monitor their live terminal feeds as they face environmental hazards, encounter hostile mutants, loot scrap metal and bottle caps, and fight for survival.
+
+Features:
+• Retro Terminal UI: Atmospheric CRT-styled green phosphor terminal aesthetic with real-time incident logging.
+• Dynamic Wasteland Expeditions: Time-based exploration with random encounters, tactical combat, and rare loot drops.
+• Equipment & Gear Tiers: Equip weapons and armor spanning Desperate Measures (Tier 1), Gunsmith craft (Tier 2), and rare Pre-War Relics (Tier 3).
+• Emergency Triage: Automated medkit injection protocol and manual Overseer intervention on high-risk anomaly signals.
+• 100% Free & Open Source: No advertisements, no analytics, no tracking, no in-app purchases, and no internet connection required. Pure offline single-player gaming.

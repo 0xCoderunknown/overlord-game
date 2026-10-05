@@ -1,0 +1,7 @@
+v0.1.0 (Early Alpha Prototype):
+- Initial experimental release of Vault Bunker 42 command terminal.
+- Basic scavenger deployment, minute-by-minute wasteland exploration, and incident logging.
+- Turn-based combat engine with auto-medkit triage.
+- 50-slot vault armory stash and basic requisition exchange.
+- Medical Bay prototype synthesis (240 min cycle).
+- 100% offline, zero trackers, zero network permissions.
