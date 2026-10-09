@@ -1,0 +1,8 @@
+v0.2.0 (Architecture & AI-Readiness Overhaul):
+- Full test suite: 57 automated tests covering combat, DR, weight limits, and offline catch-up.
+- Modularized Dweller Screen: decomposed 1,113-line screen into modular terminal components.
+- Deterministic simulation support with seedable RNG.
+- Save state schema versioning for safe future migrations.
+- Thematic CRT radar fallback for expedition breach directives.
+- Hardened background timer lifecycle and memory safety.
+- 100% offline, zero trackers, zero network dependencies.

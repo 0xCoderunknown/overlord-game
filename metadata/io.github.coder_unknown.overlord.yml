@@ -32,7 +32,17 @@ Builds:
     build:
       - $$flutter$$/bin/flutter build apk --release
 
+  - versionName: 0.2.0
+    versionCode: 2
+    commit: v0.2.0
+    srclib:
+      - flutter@stable
+    prebuild:
+      - $$flutter$$/bin/flutter pub get
+    build:
+      - $$flutter$$/bin/flutter build apk --release
+
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 0.1.0
-CurrentCode: 1
+CurrentVersion: 0.2.0
+CurrentCode: 2

@@ -10,16 +10,17 @@
         [ VAULT BUNKER 42 // TACTICAL COMMAND & EXPEDITION OS ]
 ```
 
-[![Release: v0.1.0-alpha](https://img.shields.io/badge/Release-v0.1.0--alpha-red.svg)](https://github.com/0xCoderunknown/overlord-game/releases)
+[![Release: v0.2.0-alpha](https://img.shields.io/badge/Release-v0.2.0--alpha-green.svg)](https://github.com/0xCoderunknown/overlord-game/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)](https://flutter.dev)
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android)](https://www.android.com)
 [![Privacy](https://img.shields.io/badge/Privacy-100%25%20Offline%20%7C%20No%20Trackers-brightgreen)](#-privacy--offline-pledge)
 [![F-Droid](https://img.shields.io/badge/F--Droid-Ready-blue?logo=f-droid)](metadata/io.github.coder_unknown.overlord.yml)
 [![Field Manual](https://img.shields.io/badge/Manual-GAMEPLAY.md-orange)](GAMEPLAY.md)
+[![Agents](https://img.shields.io/badge/AI%20Maintained-AGENTS.md-blueviolet)](AGENTS.md)
 
-> ⚠️ **EARLY ALPHA NOTICE (v0.1.0):**  
-> This game is an early-stage, experimental concept prototype. Balance, mechanics, and features are in active development.
+> ⚠️ **EARLY ALPHA NOTICE (v0.2.0):**  
+> This game is in active development with an autonomous AI-maintained architecture.
 
 **Overlord** is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal. 
 

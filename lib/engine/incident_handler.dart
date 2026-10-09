@@ -210,7 +210,8 @@ class IncidentHandler {
       );
     } else {
       Future.delayed(const Duration(seconds: 5), () {
-        if (!manager.roster.any((s) => s.id == scav.id) ||
+        if (manager.isDisposed ||
+            !manager.roster.any((s) => s.id == scav.id) ||
             scav.state == ScavState.dead) {
           return;
         }
@@ -230,8 +231,10 @@ class IncidentHandler {
           poiTier,
           daysPassed,
         );
-        manager.notifyStateChanged();
-        manager.saveGame();
+        if (!manager.isDisposed) {
+          manager.notifyStateChanged();
+          manager.saveGame();
+        }
       });
     }
   }

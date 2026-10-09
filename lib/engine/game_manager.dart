@@ -23,6 +23,8 @@ class GameManager extends ChangeNotifier with WidgetsBindingObserver {
 
   DateTime? lastSavedTime;
   Timer? _gameTimer;
+  bool _isDisposed = false;
+  bool get isDisposed => _isDisposed;
 
   GameManager() {
     WidgetsBinding.instance.addObserver(this);
@@ -357,10 +359,17 @@ class GameManager extends ChangeNotifier with WidgetsBindingObserver {
       saveGame();
       notifyListeners();
     }
+    if (_isDisposed) return;
     startGameLoop();
   }
 
+  void stopGameLoop() {
+    _gameTimer?.cancel();
+    _gameTimer = null;
+  }
+
   void startGameLoop() {
+    if (_isDisposed) return;
     if (_gameTimer != null && _gameTimer!.isActive) return;
 
     _gameTimer = Timer.periodic(const Duration(seconds: 60), (timer) {
@@ -386,6 +395,7 @@ class GameManager extends ChangeNotifier with WidgetsBindingObserver {
     final prefs = await SharedPreferences.getInstance();
     lastSavedTime = DateTime.now();
     final data = {
+      'schemaVersion': 1,
       'caps': caps,
       'lastSavedTime': lastSavedTime!.toIso8601String(),
       'roster': roster.map((s) => s.toJson()).toList(),
@@ -639,8 +649,10 @@ class GameManager extends ChangeNotifier with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    _isDisposed = true;
     WidgetsBinding.instance.removeObserver(this);
     _gameTimer?.cancel();
+    _gameTimer = null;
     super.dispose();
   }
 }

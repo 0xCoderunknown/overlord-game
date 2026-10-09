@@ -103,11 +103,26 @@ class _EventModalState extends State<EventModal> {
                 fit: BoxFit.cover,
                 color: Colors.greenAccent,
                 colorBlendMode: BlendMode.modulate,
-                errorBuilder: (context, error, stackTrace) => const Center(
-                  child: Icon(
-                    Icons.broken_image,
-                    color: Colors.green,
-                    size: 50,
+                errorBuilder: (context, error, stackTrace) => Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.radar,
+                        color: Colors.greenAccent,
+                        size: 48,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "[ OPTICAL FEED OFFLINE // RADAR LOCK ]",
+                        style: TextStyle(
+                          color: Colors.green.shade400,
+                          fontSize: 10,
+                          fontFamily: 'monospace',
+                          letterSpacing: 1,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

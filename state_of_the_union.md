@@ -78,17 +78,20 @@ When an enemy is defeated, loot is rolled on a d100 Master Drop Table. If a scav
     *   **Engine Hooks**: Reads `caps` and `globalStash.length`. Includes a FAB that calls `processTicks(60)` for dev fast-forwarding time. Routes to Roster, Market, and Dweller screens.
 *   **`DwellerScreen`**: The detailed live-view for an individual scavenger. Contains a vitals header, live terminal feed, and an action deck.
     *   **Engine Hooks**: Calls `sendToWasteland()` to deploy, `recallScavenger()` to abort exploration, and triggers `saveGame()` when updating equipment via the bottom sheet modal. Opens `EventModal` for resolving `waitingForInput` states.
-*   **`MarketScreen`**: A purely visual storefront displaying the `ItemDatabase` listings for Weapons and Armor, segmented by Tier colors.
-*   **`RosterScreen`**: Displays the full roster of all dwellers regardless of active state. 
-    *   **Engine Hooks**: Calls dev macros `devResetRoster()` and `devSendAllToWasteland()`. Routes to `DwellerScreen`.
+*   **`MarketScreen`**: Full bunker storefront displaying Weapons and Armor with inspection modals and functional `buyItem` transaction logic.
+*   **`StashScreen`**: 50-slot Armory interface supporting single and stack sales, item inspection, and inventory liquidation for Caps.
+*   **`FacilityScreen`**: Vault Engineering deck managing the Medical Bay, unlock protocols (10,000 Caps), and a 240-minute chemical synthesis cycle yielding 2x Wasteland Medkits.
+*   **`RosterScreen`**: Displays active personnel and contractor recruitment board powered by `CharacterDatabase`.
 
 ---
 
-## 5. Missing Links & Stubs
+## 5. Current Engine Status & Technical Invariants
 
-*   **Infinite / Unused Engine Variables**: 
-    *   `globalStash`: Currently an infinite `List<Item>` array appending everything non-scrap upon Scavenger return. It has no capacity limit and there is presently no UI/Screen mapped to view or extract its contents (only the raw count is displayed in `OverseerScreen`).
-    *   `caps`: Although caps are generated via passive encounters and scrap auto-selling, there is **zero functional purchase logic wired up yet**. The `MarketScreen` exists but has no buy buttons or state mutation attached.
-*   **Hardcoded / Placeholder Data**: 
-    *   `freeGun` ('w_pipe_pistol') and `freeArmor` ('a_motorcycle') are hardcoded to the initial save state configuration in the `GameManager` constructor. 
-    *   `devResetRoster()` hardcodes specific characters ("Jonny", "Shina", "Robot") with arbitrary starting stats (e.g., 150 HP for Robot) without referencing a baseline character database.
+*   **Global Stash & Economy**:
+    *   `globalStash`: Strictly capped at **50 slots** (`GameConfig.maxStashSize`). Dwellers wait at the vault door if returning with items that exceed the limit.
+    *   `caps`: Fully functional currency wired into recruitment, market requisitions, medical bay restoration, and revives.
+*   **Testing & CI Infrastructure**:
+    *   Deterministic seedable RNG supported via `EngineHelpers.setRng()`.
+    *   Automated test suite (42 unit/widget tests) verifying model serialization, weight clamping, combat brawls, facilities, and market transactions.
+*   **Autonomous Maintenance Directives**:
+    *   Consult [`AGENTS.md`](AGENTS.md) for immutable gameplay constraints, zero-network privacy pledge, CRT styling tokens, and pre-commit verification workflows.

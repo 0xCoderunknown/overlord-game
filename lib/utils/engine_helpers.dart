@@ -3,7 +3,17 @@ import 'dart:math';
 import 'game_config.dart';
 
 class EngineHelpers {
-  static final Random _random = Random();
+  static Random _random = Random();
+
+  /// Set custom or seeded RNG for deterministic testing
+  static void setRng(Random customRandom) {
+    _random = customRandom;
+  }
+
+  /// Reset to standard unseeded RNG
+  static void resetRng() {
+    _random = Random();
+  }
 
   /// Safe RNG roller to prevent nextInt(0) crashes
   static int rollStat(int minVal, int maxVal) {
