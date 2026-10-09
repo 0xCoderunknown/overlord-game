@@ -2,14 +2,14 @@
 
 > **Document Version:** 1.0.0  
 > **Target Audience:** AI Coding Agents & LLM Contributors  
-> **App:** Overlord (Vault Bunker 42 OS)  
-> **Tech Stack:** Flutter 3.x / Dart 3.13+ / Provider / SharedPreferences  
+> **App:** Overlord (Vault Bunker 42 Command Simulation)  
+> **Tech Stack:** Flutter 3.x (Android API 34+) / Dart 3.13+ / Provider / SharedPreferences  
 
 ---
 
 ## 1. Project Manifesto & Core Directives
 
-Overlord is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal. All autonomous agents modifying or expanding this codebase **must strictly honor these directives**:
+Overlord is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal interface. All autonomous agents modifying or expanding this codebase **must strictly honor these directives**:
 
 1. **100% Offline & Privacy Pledge**:
    - Never introduce remote network dependencies (`http`, `dio`, analytics SDKs, crashlytics, remote telemetry, or ad networks).
@@ -17,8 +17,8 @@ Overlord is a post-apocalyptic expedition and scavenger management RPG rendered 
    - Never declare internet permissions in Android build configurations.
 2. **Authentic CRT Retro Aesthetic**:
    - Never use generic Material 3 colors (Material Purple, Blue, etc.).
-   - Always use theme tokens from [`AppTheme`](file:///k:/Android/overlord-game/lib/utils/app_theme.dart) (`AppTheme.terminalGreen`, `AppTheme.alertRed`, `AppTheme.warningYellow`, `AppTheme.retroText()`, etc.).
-   - Wrap UI panels in [`TerminalContainer`](file:///k:/Android/overlord-game/lib/widgets/terminal_container.dart) and use [`TerminalButton`](file:///k:/Android/overlord-game/lib/widgets/terminal_button.dart).
+   - Always use theme tokens from [`AppTheme`](lib/utils/app_theme.dart) (`AppTheme.terminalGreen`, `AppTheme.alertRed`, `AppTheme.warningYellow`, `AppTheme.retroText()`, etc.).
+   - Wrap UI panels in [`TerminalContainer`](lib/widgets/terminal_container.dart) and use [`TerminalButton`](lib/widgets/terminal_button.dart).
 3. **Non-Negotiable Quality Gates**:
    - Every code modification **must** pass `flutter analyze` with **0 errors and 0 warnings**.
    - Every code modification **must** pass `flutter test` with **100% test pass rate**.
@@ -53,7 +53,7 @@ lib/
 ```
 
 ### State Management Guidelines
-- Root state is centralized in [`GameManager`](file:///k:/Android/overlord-game/lib/engine/game_manager.dart) (`ChangeNotifier`).
+- Root state is centralized in [`GameManager`](lib/engine/game_manager.dart) (`ChangeNotifier`).
 - The simulation loop runs on a 60-second periodic timer triggering `processTicks(1)`.
 - UI listens via `context.watch<GameManager>()` or `context.read<GameManager>()`.
 - Always call `saveGame()` when mutating persistent game state.
@@ -66,7 +66,7 @@ lib/
 
 ## 4. Testing & Deterministic RNG Guidelines
 
-To test pure simulation and combat math deterministically, use the seedable RNG API in [`EngineHelpers`](file:///k:/Android/overlord-game/lib/utils/engine_helpers.dart):
+To test pure simulation and combat math deterministically, use the seedable RNG API in [`EngineHelpers`](lib/utils/engine_helpers.dart):
 
 ```dart
 // In Unit Tests:

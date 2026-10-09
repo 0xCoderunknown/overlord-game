@@ -7,10 +7,11 @@
   ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗██║     ██║   ██║██╔══██╗██║  ██║
   ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║███████╗╚██████╔╝██║  ██║██████╔╝
    ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ 
-        [ VAULT BUNKER 42 // TACTICAL COMMAND & EXPEDITION OS ]
+        [ VAULT BUNKER 42 // TACTICAL COMMAND & EXPEDITION SIMULATION ]
 ```
 
 [![Release: v0.2.0-alpha](https://img.shields.io/badge/Release-v0.2.0--alpha-green.svg)](https://github.com/0xCoderunknown/overlord-game/releases)
+[![CI](https://github.com/0xCoderunknown/overlord-game/actions/workflows/ci.yml/badge.svg)](https://github.com/0xCoderunknown/overlord-game/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)](https://flutter.dev)
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android)](https://www.android.com)
@@ -22,7 +23,7 @@
 > ⚠️ **EARLY ALPHA NOTICE (v0.2.0):**  
 > This game is in active development with an autonomous AI-maintained architecture.
 
-**Overlord** is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal. 
+**Overlord** is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal interface. 
 
 As the **Overseer of Vault Bunker 42**, you monitor expedition telemetry feeds, manage dweller stress and equipment, synthesize medical supplies, and issue tactical directives to survive the irradiated wasteland surface.
 
@@ -176,7 +177,7 @@ lib/
 ## 🤝 CONTRIBUTING TO THE WASTELAND
 
 Want to contribute a new weapon, dangerous mutant, wasteland lore, or bunker room?
-Read our [**Contributing Guidelines**](CONTRIBUTING.md) and [**Code of Conduct**](CODE_OF_CONDUCT.md).
+Read our [**Contributing Guidelines**](.github/CONTRIBUTING.md) and [**Code of Conduct**](.github/CODE_OF_CONDUCT.md).
 
 Content PRs are welcome:
 * **New Items**: [`lib/content/item_database.dart`](lib/content/item_database.dart)

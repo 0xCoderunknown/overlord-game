@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `DwellerItemInspectDialog` (item inspection, consumption, equip, and stash transfers)
   - `DwellerInventorySheet` (equipment and 50-slot armory management sheet)
   - Reduced `DwellerScreen` from 1,113 lines down to 235 lines (< 400 line agent invariant).
-- **Documentation Alignment**: Synchronized `state_of_the_union.md` with active game systems.
+- **Documentation & FOSS Alignment**: Streamlined repository documentation topology, relocated community files (`CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`) to `.github/`, clarified tactical simulation RPG tagline, and synchronized `GAMEPLAY.md` and `AGENTS.md`.
 
 ### Fixed
 - Fixed unmanaged `Future.delayed` timer in `IncidentHandler.handleCombatEncounter` with `manager.isDisposed` lifecycle guards.

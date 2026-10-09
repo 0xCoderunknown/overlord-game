@@ -4,6 +4,7 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 0.2.x   | :white_check_mark: |
 | 0.1.x   | :white_check_mark: |
 
 ## Reporting a Vulnerability
@@ -12,6 +13,6 @@ As **Overlord** is a completely offline, client-side single-player game with no 
 
 However, if you discover any security, privacy, or integrity issue (such as improper local file handling or dependency vulnerabilities):
 
-1. Please report it by opening a private GitHub Security Advisory or contacting the repository owner directly.
+1. Please report it by opening a private [GitHub Security Advisory](https://github.com/0xCoderunknown/overlord-game/security/advisories/new) or contacting the repository owner directly.
 2. Provide a clear description and steps to reproduce.
 3. We will acknowledge receipt within 48 hours and work on a resolution promptly.
