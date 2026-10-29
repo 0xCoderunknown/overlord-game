@@ -17,7 +17,12 @@ void main() {
       manager.caps = 500;
       manager.globalStash.clear();
 
-      final weapon = Item(id: 'w_nailgun', name: 'Nailgun', value: 450, type: 'weapon');
+      final weapon = Item(
+        id: 'w_nailgun',
+        name: 'Nailgun',
+        value: 450,
+        type: 'weapon',
+      );
       final success = manager.buyItem(weapon);
 
       expect(success, isTrue);
@@ -29,7 +34,12 @@ void main() {
       final manager = GameManager();
       manager.caps = 100;
 
-      final expensiveWeapon = Item(id: 'w_sniper', name: 'Sniper', value: 800, type: 'weapon');
+      final expensiveWeapon = Item(
+        id: 'w_sniper',
+        name: 'Sniper',
+        value: 800,
+        type: 'weapon',
+      );
       final success = manager.buyItem(expensiveWeapon);
 
       expect(success, isFalse);
@@ -39,7 +49,13 @@ void main() {
     test('sellItem removes item and credits caps', () {
       final manager = GameManager();
       manager.caps = 100;
-      final scrap = Item(id: 'scrap_plate', name: 'Scrap Plate', value: 15, type: 'scrap', quantity: 1);
+      final scrap = Item(
+        id: 'scrap_plate',
+        name: 'Scrap Plate',
+        value: 15,
+        type: 'scrap',
+        quantity: 1,
+      );
       manager.globalStash = [scrap];
 
       manager.sellItem(scrap);
@@ -75,7 +91,12 @@ void main() {
       final scav = Scavenger(id: 'scav_1', name: 'Scavenger');
       manager.roster = [scav];
 
-      final item = Item(id: 'w_stapler', name: 'Stapler', type: 'weapon', quantity: 1);
+      final item = Item(
+        id: 'w_stapler',
+        name: 'Stapler',
+        type: 'weapon',
+        quantity: 1,
+      );
       manager.globalStash = [item];
 
       final moved = manager.moveItemStashToBackpack(scav, item);
@@ -91,7 +112,12 @@ void main() {
       manager.globalStash.clear();
 
       final scav = Scavenger(id: 'scav_1', name: 'Scavenger');
-      final miscItem = Item(id: 'junk_fan', name: 'Desk Fan', type: 'misc', quantity: 1);
+      final miscItem = Item(
+        id: 'junk_fan',
+        name: 'Desk Fan',
+        type: 'misc',
+        quantity: 1,
+      );
       scav.backpack = [miscItem];
       manager.roster = [scav];
 
@@ -108,7 +134,11 @@ void main() {
       manager.globalStash.clear();
 
       final weapon = Item(id: 'w_pipe', name: 'Pipe Pistol', type: 'weapon');
-      final scav = Scavenger(id: 'scav_1', name: 'Scavenger', equippedWeapon: weapon);
+      final scav = Scavenger(
+        id: 'scav_1',
+        name: 'Scavenger',
+        equippedWeapon: weapon,
+      );
       manager.roster = [scav];
 
       manager.unequipItem(scav, 'weapon');
@@ -140,16 +170,29 @@ void main() {
 
       // Add required recipe items to stash
       manager.globalStash = [
-        Item(id: 'med_syringe', name: 'Syringe', isStackable: true, quantity: 1),
+        Item(
+          id: 'med_syringe',
+          name: 'Syringe',
+          isStackable: true,
+          quantity: 1,
+        ),
         Item(id: 'med_herb', name: 'Herb', isStackable: true, quantity: 2),
-        Item(id: 'chem_expired', name: 'Chemicals', isStackable: true, quantity: 1),
+        Item(
+          id: 'chem_expired',
+          name: 'Chemicals',
+          isStackable: true,
+          quantity: 1,
+        ),
       ];
 
       final started = manager.startMedbayCrafting();
 
       expect(started, isTrue);
       expect(manager.medbay.isCrafting, isTrue);
-      expect(manager.medbay.minutesRemaining, equals(GameConfig.medbayCraftingTime));
+      expect(
+        manager.medbay.minutesRemaining,
+        equals(GameConfig.medbayCraftingTime),
+      );
       expect(manager.globalStash.isEmpty, isTrue); // All consumed
     });
 
@@ -171,7 +214,11 @@ void main() {
   group('GameManager Roster Protocols', () {
     test('sendToWasteland transitions idle dweller to exploring', () {
       final manager = GameManager();
-      final scav = Scavenger(id: 'scav_1', name: 'Jonny', state: ScavState.idle);
+      final scav = Scavenger(
+        id: 'scav_1',
+        name: 'Jonny',
+        state: ScavState.idle,
+      );
       manager.roster = [scav];
 
       manager.sendToWasteland(scav);
@@ -207,7 +254,9 @@ void main() {
         minutesExplored: 40,
       );
       // Give dweller 100 caps in backpack
-      scav.backpack.add(Item(id: 'loot_caps', name: 'Caps', quantity: 100, type: 'scrap'));
+      scav.backpack.add(
+        Item(id: 'loot_caps', name: 'Caps', quantity: 100, type: 'scrap'),
+      );
       manager.roster = [scav];
 
       manager.reviveScavenger(scav);
@@ -217,7 +266,9 @@ void main() {
       expect(scav.minutesToReturn, equals(20)); // 40 ~/ 2
 
       // Fee is 10% of 100 = 10, but minReviveCost is 20 -> 100 - 20 = 80
-      final remainingCaps = scav.backpack.firstWhere((i) => i.id == 'loot_caps').quantity;
+      final remainingCaps = scav.backpack
+          .firstWhere((i) => i.id == 'loot_caps')
+          .quantity;
       expect(remainingCaps, equals(80));
     });
   });

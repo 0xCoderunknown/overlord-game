@@ -10,7 +10,9 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('OverseerScreen renders command dashboard and treasury', (WidgetTester tester) async {
+  testWidgets('OverseerScreen renders command dashboard and treasury', (
+    WidgetTester tester,
+  ) async {
     final manager = GameManager();
     manager.stopGameLoop();
     manager.caps = 750;
@@ -18,9 +20,7 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<GameManager>.value(
         value: manager,
-        child: const MaterialApp(
-          home: OverseerScreen(),
-        ),
+        child: const MaterialApp(home: OverseerScreen()),
       ),
     );
 

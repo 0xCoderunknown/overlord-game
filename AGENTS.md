@@ -1,31 +1,32 @@
-# OVERLORD // Autonomous Agent Guidelines (`AGENTS.md`)
+﻿# OVERLORD // Autonomous Agent Constitution & Guardrails (`AGENTS.md`)
 
-> **Document Version:** 1.0.0  
-> **Target Audience:** AI Coding Agents & LLM Contributors  
-> **App:** Overlord (Vault Bunker 42 Command Simulation)  
-> **Tech Stack:** Flutter 3.x (Android API 34+) / Dart 3.13+ / Provider / SharedPreferences  
+> **MANDATORY CONTEXT FOR ALL AI AGENTS & CODING ASSISTANTS**  
+> Read this file **first** before planning, analyzing, or modifying any code in this repository.  
+> The human user is the **Strict Product Manager (PM) / Vault Overseer**. You are the **Senior Clinical & Game Systems Architect**.  
+> **App:** Overlord (Vault Bunker 42 OS)  
+> **Tech Stack:** Flutter 3.x / Dart 3.13+ / Provider / SharedPreferences (100% Offline)
 
 ---
 
-## 1. Project Manifesto & Core Directives
+## 🏛️ 1. Project Manifesto & Core Directives
 
-Overlord is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal interface. All autonomous agents modifying or expanding this codebase **must strictly honor these directives**:
+Overlord is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal. All autonomous agents modifying or expanding this codebase **must strictly honor these directives**:
 
-1. **100% Offline & Privacy Pledge**:
-   - Never introduce remote network dependencies (`http`, `dio`, analytics SDKs, crashlytics, remote telemetry, or ad networks).
-   - Never use Google Fonts runtime network downloads. Monospace typography uses the built-in system font family (`'monospace'`).
-   - Never declare internet permissions in Android build configurations.
-2. **Authentic CRT Retro Aesthetic**:
-   - Never use generic Material 3 colors (Material Purple, Blue, etc.).
+1. **100% Offline & Privacy Pledge:**
+   - **Never** introduce remote network dependencies (`http`, `dio`, analytics SDKs, crashlytics, remote telemetry, or ad networks).
+   - **Never** use Google Fonts runtime network downloads. Monospace typography uses the built-in system font family (`'monospace'`).
+   - **Never** declare internet permissions in Android build configurations.
+2. **Authentic CRT Retro Aesthetic:**
+   - **Never** use generic Material 3 colors (Material Purple, Blue, pastel pinks, etc.).
    - Always use theme tokens from [`AppTheme`](lib/utils/app_theme.dart) (`AppTheme.terminalGreen`, `AppTheme.alertRed`, `AppTheme.warningYellow`, `AppTheme.retroText()`, etc.).
    - Wrap UI panels in [`TerminalContainer`](lib/widgets/terminal_container.dart) and use [`TerminalButton`](lib/widgets/terminal_button.dart).
-3. **Non-Negotiable Quality Gates**:
-   - Every code modification **must** pass `flutter analyze` with **0 errors and 0 warnings**.
-   - Every code modification **must** pass `flutter test` with **100% test pass rate**.
+3. **Mandatory Indian Date Format (`DD-MM-YYYY`):**
+   - **All dates displayed in UI, terminal logs, changelogs (`CHANGELOG.md`), and markdown documentation MUST strictly use Indian numerical date formatting (`DD-MM-YYYY` or `DD-MM-YY`).**
+   - Never use `YYYY-MM-DD` or `MM/DD/YYYY` in human-facing text or documentation.
 
 ---
 
-## 2. Immutable Gameplay Rules & Invariants
+## ⚖️ 2. Immutable Gameplay Rules & Invariants
 
 | Invariant | Constant / Location | Rule |
 |---|---|---|
@@ -40,7 +41,7 @@ Overlord is a post-apocalyptic expedition and scavenger management RPG rendered 
 
 ---
 
-## 3. Architecture & Codebase Topology
+## 🏗️ 3. Architecture & Codebase Topology
 
 ```
 lib/
@@ -50,62 +51,49 @@ lib/
 ├── screens/                     # Full-Page Screens (Overseer, Dweller, Market, Roster, Stash, Facility)
 ├── utils/                       # Helpers (AppTheme, EngineHelpers, GameConfig)
 └── widgets/                     # Reusable Terminal Components
+test/
+├── unit/                        # Engine, combat, model, and RNG unit tests
+└── widget/                      # Screen and widget tests
+docs/
+└── MASTER_BACKLOG.md            # True product roadmap & anti-goals
 ```
 
-### State Management Guidelines
+### State Management & Code Granularity
 - Root state is centralized in [`GameManager`](lib/engine/game_manager.dart) (`ChangeNotifier`).
 - The simulation loop runs on a 60-second periodic timer triggering `processTicks(1)`.
-- UI listens via `context.watch<GameManager>()` or `context.read<GameManager>()`.
-- Always call `saveGame()` when mutating persistent game state.
-
-### File Granularity & Modularization
-- **Strict Limit:** Keep individual files under **400 lines of code**.
-- If a screen grows beyond 400 lines, extract sheets, headers, and dialogs into dedicated widgets in `lib/widgets/`.
+- **Strict Line Limit:** Keep every presentation and screen file strictly under **400 lines of code**. Extract sheets, dialogs, and cards into `lib/widgets/`.
 
 ---
 
-## 4. Testing & Deterministic RNG Guidelines
+## 📋 4. Strict PM Interaction Protocol (How You Must Operate)
 
-To test pure simulation and combat math deterministically, use the seedable RNG API in [`EngineHelpers`](lib/utils/engine_helpers.dart):
+You are being managed by a strict Product Manager. Follow this exact workflow:
 
-```dart
-// In Unit Tests:
-EngineHelpers.setRng(Random(42)); // Fixed seed for reproducible rolls
+### Step 1: Clarify & Plan First (Never jump straight to mass edits)
+- When given a feature request, provide:
+  1. **User Flow & Acceptance Criteria**
+  2. **Affected Files & Architecture Touchpoints**
+  3. **Data Impact** (Are any save state schemas or constants changing? Provide exact diffs).
+- Wait for PM approval before executing multi-file changes.
 
-// Reset after tests:
-EngineHelpers.resetRng(); // Restores true system Random()
-```
+### Step 2: Respect Existing Conventions
+- Use pure engine math with seedable RNG (`EngineHelpers.setRng(Random(seed))`) in `test/`.
+- Maintain CRT retro aesthetic with green terminal tokens. Never introduce modern UI frameworks or Material 3 defaults.
 
-### Test Directory Topology
-```
-test/
-├── unit/
-│   ├── models/
-│   │   ├── item_test.dart
-│   │   └── scavenger_test.dart
-│   ├── engine/
-│   │   ├── exploration_engine_test.dart
-│   │   ├── incident_handler_test.dart
-│   │   ├── loot_engine_test.dart
-│   │   └── game_manager_test.dart
-│   └── utils/
-│       └── engine_helpers_test.dart
-└── widget/
-    └── widget_test.dart
-```
+### Step 3: Verification Gate
+- After making changes, always run the automated gate:
+  ```bash
+  dart run tool/verify_invariants.dart
+  ```
+- Must pass with 100% clean formatting, <400 line limits, zero network packages, zero analyze issues, and 100% test pass rate.
 
 ---
 
-## 5. Pre-Commit Verification Workflow
+## 🛑 5. Codebase Red Lines (Instant Failure Conditions)
 
-Before completing any task, execute:
-```bash
-# 1. Format code
-flutter format .
-
-# 2. Verify static analysis (MUST have 0 issues)
-flutter analyze
-
-# 3. Run all unit and widget tests (MUST have 100% passing tests)
-flutter test
-```
+- ❌ **Violating the 100% Offline Pledge** (Adding `http`, `dio`, analytics, Firebase, ad networks, or network permissions).
+- ❌ **Using non-terminal / generic Material colors** instead of CRT phosphor tokens (`AppTheme`).
+- ❌ **Adding presentation files exceeding 400 lines.**
+- ❌ **Breaking core gameplay invariants** (10kg backpack cap, 50-slot stash cap, 2-round combat, emergency auto-medkit).
+- ❌ **Using non-Indian date formats (`YYYY-MM-DD` or `MM/DD/YYYY`) in changelogs or markdown documentation.** (Must use `DD-MM-YYYY`).
+- ❌ **Failing static analysis or breaking automated tests.**

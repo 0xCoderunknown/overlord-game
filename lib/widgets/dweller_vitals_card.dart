@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/game_models.dart';
 import '../utils/app_theme.dart';
 import '../utils/engine_helpers.dart';
@@ -57,14 +58,15 @@ class DwellerVitalsCard extends StatelessWidget {
           Container(
             width: 100,
             decoration: BoxDecoration(
-              border: Border(
-                right: BorderSide(color: baseColor, width: 2),
-              ),
+              border: Border(right: BorderSide(color: baseColor, width: 2)),
             ),
             child: ColorFiltered(
               colorFilter: isHallucinating
                   ? ColorFilter.mode(baseColor, BlendMode.modulate)
-                  : const ColorFilter.mode(Colors.transparent, BlendMode.multiply),
+                  : const ColorFilter.mode(
+                      Colors.transparent,
+                      BlendMode.multiply,
+                    ),
               child: Image.asset(
                 scavenger.imagePath,
                 fit: BoxFit.cover,
@@ -117,9 +119,7 @@ class DwellerVitalsCard extends StatelessWidget {
 
                       return Expanded(
                         child: Container(
-                          margin: EdgeInsets.only(
-                            right: index < 9 ? 2.0 : 0,
-                          ),
+                          margin: EdgeInsets.only(right: index < 9 ? 2.0 : 0),
                           height: blockHeight,
                           decoration: BoxDecoration(
                             color: isFilled

@@ -56,9 +56,15 @@ void main() {
     test('currentWeight excludes loot_caps', () {
       final scav = Scavenger(id: 'scav_1', name: 'Test Scav');
 
-      scav.backpack.add(Item(id: 'loot_caps', name: 'Caps', quantity: 50, type: 'scrap'));
-      scav.backpack.add(Item(id: 'scrap_metal', name: 'Scrap', quantity: 2, type: 'scrap'));
-      scav.backpack.add(Item(id: 'c_medkit', name: 'Medkit', quantity: 1, type: 'consumable'));
+      scav.backpack.add(
+        Item(id: 'loot_caps', name: 'Caps', quantity: 50, type: 'scrap'),
+      );
+      scav.backpack.add(
+        Item(id: 'scrap_metal', name: 'Scrap', quantity: 2, type: 'scrap'),
+      );
+      scav.backpack.add(
+        Item(id: 'c_medkit', name: 'Medkit', quantity: 1, type: 'consumable'),
+      );
 
       // 3 items in list, but caps are weightless -> weight should be 2
       expect(scav.currentWeight, equals(2));
@@ -147,36 +153,50 @@ void main() {
       expect(scav.currentWeight, equals(GameConfig.maxBackpackWeight));
 
       // 11th non-cap item should be rejected
-      final overflowItem = Item(id: 'item_overflow', name: 'Overflow Item', type: 'misc');
+      final overflowItem = Item(
+        id: 'item_overflow',
+        name: 'Overflow Item',
+        type: 'misc',
+      );
       final addedOverflow = scav.addItemToBackpack(overflowItem);
       expect(addedOverflow, isFalse);
       expect(scav.backpack.length, equals(GameConfig.maxBackpackWeight));
 
       // Caps can still be added even when backpack is full
-      final caps = Item(id: 'loot_caps', name: 'Caps', type: 'scrap', quantity: 100);
+      final caps = Item(
+        id: 'loot_caps',
+        name: 'Caps',
+        type: 'scrap',
+        quantity: 100,
+      );
       final addedCaps = scav.addItemToBackpack(caps);
       expect(addedCaps, isTrue);
     });
 
-    test('consumeMedkit triggers at or below 50% HP and restores 50% maxHp', () {
-      final scav = Scavenger(
-        id: 'scav_1',
-        name: 'Injured Scav',
-        hp: 50,
-        maxHp: 100,
-      );
-      scav.backpack.add(Item(id: 'c_medkit', name: 'Medkit', quantity: 2, type: 'consumable'));
+    test(
+      'consumeMedkit triggers at or below 50% HP and restores 50% maxHp',
+      () {
+        final scav = Scavenger(
+          id: 'scav_1',
+          name: 'Injured Scav',
+          hp: 50,
+          maxHp: 100,
+        );
+        scav.backpack.add(
+          Item(id: 'c_medkit', name: 'Medkit', quantity: 2, type: 'consumable'),
+        );
 
-      // HP is 50/100 (50%) -> should consume medkit
-      final consumed = scav.consumeMedkit();
-      expect(consumed, isTrue);
-      expect(scav.hp, equals(100)); // 50 + 50
-      expect(scav.backpack.first.quantity, equals(1));
+        // HP is 50/100 (50%) -> should consume medkit
+        final consumed = scav.consumeMedkit();
+        expect(consumed, isTrue);
+        expect(scav.hp, equals(100)); // 50 + 50
+        expect(scav.backpack.first.quantity, equals(1));
 
-      // Now at 100/100 -> should not consume medkit
-      final secondTry = scav.consumeMedkit();
-      expect(secondTry, isFalse);
-    });
+        // Now at 100/100 -> should not consume medkit
+        final secondTry = scav.consumeMedkit();
+        expect(secondTry, isFalse);
+      },
+    );
 
     test('toJson and fromJson round-trip preserves all scavenger fields', () {
       final scav = Scavenger(

@@ -7,23 +7,18 @@ import '../utils/app_theme.dart';
 import 'dweller_item_inspect_dialog.dart';
 import 'item_grid_card.dart';
 
+const _kGearTypes = {'weapon', 'armor', 'consumable', 'food', 'material'};
+
 class DwellerInventorySheet extends StatelessWidget {
   final Scavenger scavenger;
 
   const DwellerInventorySheet({super.key, required this.scavenger});
 
-  Color _getItemColor(int tier) {
-    switch (tier) {
-      case 1:
-        return AppTheme.grey;
-      case 2:
-        return AppTheme.blueAccent;
-      case 3:
-        return AppTheme.orangeAccent;
-      default:
-        return AppTheme.terminalGreen;
-    }
-  }
+  Color _getItemColor(int tier) => tier == 2
+      ? AppTheme.blueAccent
+      : (tier == 3
+            ? AppTheme.orangeAccent
+            : (tier == 1 ? AppTheme.grey : AppTheme.terminalGreen));
 
   IconData _getIconForType(String? type) {
     if (type == 'consumable' || type == 'food') return Icons.medical_services;
@@ -168,14 +163,7 @@ class DwellerInventorySheet extends StatelessWidget {
           orElse: () => scavenger,
         );
         final stashGear = manager.globalStash
-            .where(
-              (i) =>
-                  i.type == 'weapon' ||
-                  i.type == 'armor' ||
-                  i.type == 'consumable' ||
-                  i.type == 'food' ||
-                  i.type == 'material',
-            )
+            .where((i) => _kGearTypes.contains(i.type))
             .toList();
         final displayBackpackItems = liveScavenger.backpack
             .where((i) => i.id != 'loot_caps')
@@ -302,11 +290,11 @@ class DwellerInventorySheet extends StatelessWidget {
                               ),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 0.85,
-                                crossAxisSpacing: 12,
-                                mainAxisSpacing: 12,
-                              ),
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.85,
+                                    crossAxisSpacing: 12,
+                                    mainAxisSpacing: 12,
+                                  ),
                               itemCount: displayBackpackItems.length,
                               itemBuilder: (context, index) => ItemGridCard(
                                 item: displayBackpackItems[index],
@@ -372,11 +360,11 @@ class DwellerInventorySheet extends StatelessWidget {
                                 ),
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: 0.85,
-                                  crossAxisSpacing: 12,
-                                  mainAxisSpacing: 12,
-                                ),
+                                      crossAxisCount: 2,
+                                      childAspectRatio: 0.85,
+                                      crossAxisSpacing: 12,
+                                      mainAxisSpacing: 12,
+                                    ),
                                 itemCount: stashGear.length,
                                 itemBuilder: (context, index) => ItemGridCard(
                                   item: stashGear[index],

@@ -50,11 +50,10 @@ void main() {
         'test_category': ['Found {amount} caps at {place}.'],
       };
 
-      final parsed = EngineHelpers.parseLog(
-        db,
-        'test_category',
-        {'amount': '50', 'place': 'Vault 42'},
-      );
+      final parsed = EngineHelpers.parseLog(db, 'test_category', {
+        'amount': '50',
+        'place': 'Vault 42',
+      });
       expect(parsed, equals('Found 50 caps at Vault 42.'));
 
       final missing = EngineHelpers.parseLog(db, 'non_existent', {});

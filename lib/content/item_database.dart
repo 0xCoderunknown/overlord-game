@@ -79,8 +79,7 @@ class ItemDatabase {
       "value": 75,
       "minStat": 3,
       "maxStat": 6,
-      "description":
-          "Requires getting uncomfortably close. Good for flyers, bad for armor.",
+      "description": "Requires getting uncomfortably close. Good for flyers, bad for armor.",
       "imagePath": "assets/images/items/mace.png",
     },
     {
@@ -105,8 +104,7 @@ class ItemDatabase {
       "value": 350,
       "minStat": 8,
       "maxStat": 14,
-      "description":
-          "Jams 10% of the time, but it beats swinging a stick. Smells like sulfur.",
+      "description": "Jams 10% of the time, but it beats swinging a stick. Smells like sulfur.",
       "imagePath": "assets/images/items/pistol.png",
     },
     {
@@ -117,8 +115,7 @@ class ItemDatabase {
       "value": 450,
       "minStat": 10,
       "maxStat": 18,
-      "description":
-          "Bypasses armor mostly because of the tetanus. Heavy battery pack attached.",
+      "description": "Bypasses armor mostly because of the tetanus. Heavy battery pack attached.",
       "imagePath": "assets/images/items/weapon.png",
     },
 
@@ -131,8 +128,7 @@ class ItemDatabase {
       "value": 1500,
       "minStat": 20,
       "maxStat": 35,
-      "description":
-          "Clean, oiled, and deadly accurate. A ghost from a functioning military.",
+      "description": "Clean, oiled, and deadly accurate. A ghost from a functioning military.",
       "imagePath": "assets/images/items/weapon.png",
     },
     {
@@ -143,8 +139,7 @@ class ItemDatabase {
       "value": 2500,
       "minStat": 30,
       "maxStat": 50,
-      "description":
-          "Originally meant for cutting ship bulkheads. Works just as well on raiders.",
+      "description": "Originally meant for cutting ship bulkheads. Works just as well on raiders.",
       "imagePath": "assets/images/items/weapon.png",
     },
   ];
@@ -159,8 +154,7 @@ class ItemDatabase {
       "value": 80,
       "minStat": 2,
       "maxStat": 6,
-      "description":
-          "Stops a knife. Barely slows down a bullet. Incredibly heavy when wet.",
+      "description": "Stops a knife. Barely slows down a bullet. Incredibly heavy when wet.",
       "imagePath": "assets/images/items/vest.png",
     },
     {
@@ -197,8 +191,7 @@ class ItemDatabase {
       "value": 600,
       "minStat": 12,
       "maxStat": 18,
-      "description":
-          "Clanks loudly, ruining stealth, but it protects the vital organs perfectly.",
+      "description": "Clanks loudly, ruining stealth, but it protects the vital organs perfectly.",
       "imagePath": "assets/images/items/vest_2.png",
     },
 
@@ -211,8 +204,7 @@ class ItemDatabase {
       "value": 1800,
       "minStat": 18,
       "maxStat": 22,
-      "description":
-          "Pristine, terrifying, and certified kick-proof. The visor still tactical-glows.",
+      "description": "Pristine, terrifying, and certified kick-proof. The visor still tactical-glows.",
       "imagePath": "assets/images/items/vest.png",
     },
     {
@@ -223,8 +215,7 @@ class ItemDatabase {
       "value": 3000,
       "minStat": 25,
       "maxStat": 35,
-      "description":
-          "Moves at 2 miles an hour, but makes the wearer practically immortal to small arms.",
+      "description": "Moves at 2 miles an hour, but makes the wearer practically immortal to small arms.",
       "imagePath": "assets/images/items/vest_2.png",
     },
   ];

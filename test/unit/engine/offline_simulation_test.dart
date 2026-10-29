@@ -30,7 +30,10 @@ void main() {
       manager.processOfflineProgress(DateTime.now());
 
       // Should not simulate 10 days; must be clamped to 4320 minutes (3 days)
-      expect(scav.minutesExplored, lessThanOrEqualTo(GameConfig.maxOfflineMinutes));
+      expect(
+        scav.minutesExplored,
+        lessThanOrEqualTo(GameConfig.maxOfflineMinutes),
+      );
     });
 
     test('resolveManualEncounter with shouldBreach=false skips POI and resumes exploring', () {

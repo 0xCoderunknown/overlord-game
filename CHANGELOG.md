@@ -1,11 +1,20 @@
-# Changelog
+﻿# Changelog
 
 All notable changes to the Overlord project will be documented in this file.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), adhering to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Dates strictly follow the Indian numerical date standard (`DD-MM-YYYY`).
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+---
 
-## [0.2.0] - 2026-10-09
+## [0.2.1] — 29-10-2026 — AI Governance Constitution, Invariant Gate & Roadmap Backlog
+
+### Added
+- **Automated Invariant Verification Gate (`tool/verify_invariants.dart`):** Single-command verification checking repository Dart formatting, <400 line limits, 100% offline pledge (no network SDKs or internet permissions), `flutter analyze` (0 warnings), and full unit/widget test suite pass rate.
+- **AI Maintainer Constitution (`AGENTS.md`):** Updated with ClinicOS-grade operating constitution, Strict PM Interaction Protocol (Clarify & Plan First -> Respect Conventions -> Verification Gate), and explicit Codebase Red Lines.
+- **Master Roadmap Backlog (`docs/MASTER_BACKLOG.md`):** Single source of truth for unbuilt features (Radio Beacon Dweller Recruitment, 50-slot Armory quick-sort, procedural retro synthesizer SFX, Hydroponics Greenhouse, and explicit Anti-Goals).
+
+---
+
+## [0.2.0] — 09-10-2026 — Modular Architecture & Test Suite Expansion
 
 ### Added
 - **AI-Readiness Architecture**: Introduced `AGENTS.md` specifying immutable gameplay invariants, CRT design tokens, offline pledge, and development rules for autonomous AI maintenance.
@@ -26,7 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed unmanaged `Future.delayed` timer in `IncidentHandler.handleCombatEncounter` with `manager.isDisposed` lifecycle guards.
 
-## [0.1.0] - 2026-10-09
+---
+
+## [0.1.0] — 09-10-2026 — Initial Open Source Release
 
 ### Added
 - Initial open-source release of Vault Bunker 42 OS.

@@ -17,18 +17,23 @@ void main() {
       expect(names, containsAll(['Shina', 'Drifter', 'Robot']));
     });
 
-    test('generateFromTemplate creates a valid idle scavenger with correct maxHp', () {
-      final template = CharacterDatabase.recruits.firstWhere((r) => r['id'] == 'char_robot');
-      final dweller = CharacterDatabase.generateFromTemplate(template);
+    test(
+      'generateFromTemplate creates a valid idle scavenger with correct maxHp',
+      () {
+        final template = CharacterDatabase.recruits.firstWhere(
+          (r) => r['id'] == 'char_robot',
+        );
+        final dweller = CharacterDatabase.generateFromTemplate(template);
 
-      expect(dweller.name, equals('Robot'));
-      expect(dweller.maxHp, equals(150));
-      expect(dweller.hp, equals(150));
-      expect(dweller.state, equals(ScavState.idle));
-      expect(dweller.backpack.isEmpty, isTrue);
-      expect(dweller.equippedWeapon, isNull);
-      expect(dweller.equippedArmor, isNull);
-    });
+        expect(dweller.name, equals('Robot'));
+        expect(dweller.maxHp, equals(150));
+        expect(dweller.hp, equals(150));
+        expect(dweller.state, equals(ScavState.idle));
+        expect(dweller.backpack.isEmpty, isTrue);
+        expect(dweller.equippedWeapon, isNull);
+        expect(dweller.equippedArmor, isNull);
+      },
+    );
 
     test('trait roll can assign psychological afflictions to recruits', () {
       final template = CharacterDatabase.recruits.first;
@@ -41,7 +46,11 @@ void main() {
         final dweller = CharacterDatabase.generateFromTemplate(template);
         if (dweller.hiddenTrait != null) {
           gotTrait = true;
-          expect(['ptsd', 'paranoid', 'psychosis'], contains(dweller.hiddenTrait));
+          expect([
+            'ptsd',
+            'paranoid',
+            'psychosis',
+          ], contains(dweller.hiddenTrait));
           break;
         }
       }

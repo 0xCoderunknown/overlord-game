@@ -12,7 +12,9 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('DwellerScreen renders vitals, live logs, and inventory button', (WidgetTester tester) async {
+  testWidgets('DwellerScreen renders vitals, live logs, and inventory button', (
+    WidgetTester tester,
+  ) async {
     final manager = GameManager();
     manager.stopGameLoop();
 
@@ -30,9 +32,7 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<GameManager>.value(
         value: manager,
-        child: MaterialApp(
-          home: DwellerScreen(scavenger: testDweller),
-        ),
+        child: MaterialApp(home: DwellerScreen(scavenger: testDweller)),
       ),
     );
 

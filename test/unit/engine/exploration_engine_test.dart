@@ -51,29 +51,32 @@ void main() {
       expect(scav.hp, equals(100));
     });
 
-    test('exploring dweller auto-returns when backpack reaches weight limit', () {
-      final manager = GameManager();
-      final scav = Scavenger(
-        id: 'scav_test',
-        name: 'Pack Scav',
-        hp: 100,
-        maxHp: 100,
-        state: ScavState.exploring,
-        minutesExplored: 40,
-      );
+    test(
+      'exploring dweller auto-returns when backpack reaches weight limit',
+      () {
+        final manager = GameManager();
+        final scav = Scavenger(
+          id: 'scav_test',
+          name: 'Pack Scav',
+          hp: 100,
+          maxHp: 100,
+          state: ScavState.exploring,
+          minutesExplored: 40,
+        );
 
-      // Fill backpack to limit (10 items)
-      for (int i = 0; i < GameConfig.maxBackpackWeight; i++) {
-        scav.backpack.add(Item(id: 'item_$i', name: 'Item $i', type: 'misc'));
-      }
-      manager.roster = [scav];
+        // Fill backpack to limit (10 items)
+        for (int i = 0; i < GameConfig.maxBackpackWeight; i++) {
+          scav.backpack.add(Item(id: 'item_$i', name: 'Item $i', type: 'misc'));
+        }
+        manager.roster = [scav];
 
-      // Process 1 tick
-      ExplorationEngine.processTicks(manager, 1, isOffline: true);
+        // Process 1 tick
+        ExplorationEngine.processTicks(manager, 1, isOffline: true);
 
-      expect(scav.state, equals(ScavState.returning));
-      expect(scav.minutesToReturn, greaterThan(0));
-    });
+        expect(scav.state, equals(ScavState.returning));
+        expect(scav.minutesToReturn, greaterThan(0));
+      },
+    );
 
     test('returning dweller deposits caps and stashes items upon arrival', () {
       final manager = GameManager();
@@ -89,8 +92,12 @@ void main() {
         minutesExplored: 30,
       );
 
-      scav.backpack.add(Item(id: 'loot_caps', name: 'Caps', quantity: 45, type: 'scrap'));
-      scav.backpack.add(Item(id: 'w_rebar', name: 'Rusted Rebar', type: 'weapon'));
+      scav.backpack.add(
+        Item(id: 'loot_caps', name: 'Caps', quantity: 45, type: 'scrap'),
+      );
+      scav.backpack.add(
+        Item(id: 'w_rebar', name: 'Rusted Rebar', type: 'weapon'),
+      );
       manager.roster = [scav];
 
       // Process 2 ticks (returning countdown reaching 0)

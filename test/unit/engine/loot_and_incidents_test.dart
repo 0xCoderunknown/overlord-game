@@ -58,7 +58,12 @@ void main() {
 
     test('handleSurvivalAct rest or hazard affects HP safely', () {
       final manager = GameManager();
-      final scav = Scavenger(id: 'scav_1', name: 'Scavenger', hp: 50, maxHp: 100);
+      final scav = Scavenger(
+        id: 'scav_1',
+        name: 'Scavenger',
+        hp: 50,
+        maxHp: 100,
+      );
       manager.roster = [scav];
 
       for (int seed = 0; seed < 10; seed++) {
@@ -73,7 +78,12 @@ void main() {
     test('handleNPCEncounter executes doctor, scam, or mugger logic without crashing', () {
       final manager = GameManager();
       manager.caps = 100;
-      final scav = Scavenger(id: 'scav_1', name: 'Scavenger', hp: 50, maxHp: 100);
+      final scav = Scavenger(
+        id: 'scav_1',
+        name: 'Scavenger',
+        hp: 50,
+        maxHp: 100,
+      );
       manager.roster = [scav];
 
       for (int seed = 0; seed < 10; seed++) {

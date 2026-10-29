@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../engine/game_manager.dart';
 import '../models/game_models.dart';
 import '../utils/app_theme.dart';
@@ -21,7 +22,8 @@ class DwellerItemInspectDialog extends StatefulWidget {
   });
 
   @override
-  State<DwellerItemInspectDialog> createState() => _DwellerItemInspectDialogState();
+  State<DwellerItemInspectDialog> createState() =>
+      _DwellerItemInspectDialogState();
 }
 
 class _DwellerItemInspectDialogState extends State<DwellerItemInspectDialog> {
@@ -54,7 +56,8 @@ class _DwellerItemInspectDialogState extends State<DwellerItemInspectDialog> {
     final scav = widget.scavenger;
     final manager = widget.manager;
 
-    bool isLockedDown = !widget.isFromStash &&
+    bool isLockedDown =
+        !widget.isFromStash &&
         (scav.state == ScavState.returning || scav.state == ScavState.dead);
 
     String lockReason = scav.state == ScavState.dead
@@ -172,10 +175,10 @@ class _DwellerItemInspectDialogState extends State<DwellerItemInspectDialog> {
                       isLockedDown
                           ? lockReason
                           : _isInjecting
-                              ? activeLabel
-                              : needsHealing
-                                  ? btnLabel
-                                  : "[ HP OPTIMAL ]",
+                          ? activeLabel
+                          : needsHealing
+                          ? btnLabel
+                          : "[ HP OPTIMAL ]",
                       style: AppTheme.retroText(
                         color: (needsHealing && !isLockedDown)
                             ? AppTheme.terminalGreen

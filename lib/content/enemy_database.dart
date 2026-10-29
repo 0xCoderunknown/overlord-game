@@ -9,8 +9,7 @@ class EnemyDatabase {
       "hp": 5,
       "minDamage": 2,
       "maxDamage": 6,
-      "description":
-          "Ankle biters the size of a bulldog. Mostly just an annoyance unless they swarm.",
+      "description": "Ankle biters the size of a bulldog. Mostly just an annoyance unless they swarm.",
       "imagePath": "assets/images/enemies/e_rat.png",
     },
     {
@@ -57,8 +56,7 @@ class EnemyDatabase {
       "hp": 45,
       "minDamage": 15,
       "maxDamage": 22,
-      "description":
-          "Cold, calculated, and doesn't miss. High-end armor required to survive contact.",
+      "description": "Cold, calculated, and doesn't miss. High-end armor required to survive contact.",
       "imagePath": "assets/images/enemies/e_drone.png",
     },
     {

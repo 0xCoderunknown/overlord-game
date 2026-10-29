@@ -5,5 +5,6 @@ class GameConfig {
   static const int medbayUnlockCost = 10000;
   static const int medbayCraftingTime = 240;
   static const int maxStashSize = 50;
-  static const int maxOfflineMinutes = 4320; // 3 days max offline catch-up ticks
+  static const int maxOfflineMinutes =
+      4320; // 3 days max offline catch-up ticks
 }
