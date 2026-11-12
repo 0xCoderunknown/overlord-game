@@ -1,10 +1,10 @@
-﻿# OVERLORD // Autonomous Agent Constitution & Guardrails (`AGENTS.md`)
+# OVERLORD // Autonomous Agent Constitution & Guardrails (`AGENTS.md`)
 
 > **MANDATORY CONTEXT FOR ALL AI AGENTS & CODING ASSISTANTS**  
 > Read this file **first** before planning, analyzing, or modifying any code in this repository.  
 > The human user is the **Strict Product Manager (PM) / Vault Overseer**. You are the **Senior Clinical & Game Systems Architect**.  
 > **App:** Overlord (Vault Bunker 42 OS)  
-> **Tech Stack:** Flutter 3.x / Dart 3.13+ / Provider / SharedPreferences (100% Offline)
+> **Tech Stack:** Flutter 3.50+ / Dart 3.14+ / Provider / SharedPreferences (100% Offline)
 
 ---
 

@@ -1,7 +1,19 @@
-﻿# Changelog
+# Changelog
 
 All notable changes to the Overlord project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), adhering to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Dates strictly follow the Indian numerical date standard (`DD-MM-YYYY`).
+
+---
+
+## [0.2.2] — 12-11-2026 — Flutter 3.50 & Dart 3.14 Framework Modernization
+
+### Added
+- **First-Party `material_ui` Integration**: Integrated `package:material_ui` (v1.11.0) adhering strictly to Flutter 3.50 framework modularization while preserving the 100% offline pledge (zero network dependencies, zero telemetry).
+- **Gradle 9.5 & AGP 9.3 Alignment**: Upgraded Android build system to Gradle 9.5.0, Android Gradle Plugin 9.3.1, and Kotlin 2.4.20 with deterministic Java 24 JVM toolchain isolation (`jvmToolchain(24)`).
+
+### Changed
+- **Migrated Deprecated Material Imports**: Modernized 20 import statements across 17 presentation files and 3 widget test files from `package:flutter/material.dart` to `package:material_ui/material_ui.dart`.
+- **Environment Baseline**: Upgraded Dart SDK environment constraint to `^3.14.0` in `pubspec.yaml`.
 
 ---
 
