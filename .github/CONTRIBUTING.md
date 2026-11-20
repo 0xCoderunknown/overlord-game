@@ -16,10 +16,9 @@ Thank you for your interest in contributing to **Overlord**! We welcome bug repo
 ### 3. Pull Requests
 1. Fork the repository.
 2. Create a new topic branch: `git checkout -b feature/my-feature`.
-3. Follow the code formatting conventions:
-   - Run `flutter format .`
-   - Ensure `flutter analyze` passes with zero issues.
-   - Run `flutter test` to ensure all tests pass.
+3. Verify your changes pass all invariant gates:
+   - Run `dart format .`
+   - Run `dart run tool/verify_invariants.dart` (enforces formatting, <400 line limits, offline pledge, zero analyze warnings, and 100% test pass rate).
 4. Commit your changes with clear, descriptive commit messages.
 5. Push to your fork and submit a Pull Request.
 
@@ -33,11 +32,8 @@ cd overlord-game
 # Fetch dependencies
 flutter pub get
 
-# Run static analysis
-flutter analyze
-
-# Run unit and widget tests
-flutter test
+# Run automated invariant gate
+dart run tool/verify_invariants.dart
 
 # Run the app locally
 flutter run

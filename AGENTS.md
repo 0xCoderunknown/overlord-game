@@ -4,7 +4,7 @@
 > Read this file **first** before planning, analyzing, or modifying any code in this repository.  
 > The human user is the **Strict Product Manager (PM) / Vault Overseer**. You are the **Senior Clinical & Game Systems Architect**.  
 > **App:** Overlord (Vault Bunker 42 OS)  
-> **Tech Stack:** Flutter 3.50+ / Dart 3.14+ / Provider / SharedPreferences (100% Offline)
+> **Tech Stack:** Flutter 3.50+ / Dart 3.14+ / material_ui / Provider / SharedPreferences (100% Offline)
 
 ---
 
@@ -18,11 +18,16 @@ Overlord is a post-apocalyptic expedition and scavenger management RPG rendered 
    - **Never** declare internet permissions in Android build configurations.
 2. **Authentic CRT Retro Aesthetic:**
    - **Never** use generic Material 3 colors (Material Purple, Blue, pastel pinks, etc.).
+   - **Never** import deprecated `package:flutter/material.dart`; always import `package:material_ui/material_ui.dart`.
    - Always use theme tokens from [`AppTheme`](lib/utils/app_theme.dart) (`AppTheme.terminalGreen`, `AppTheme.alertRed`, `AppTheme.warningYellow`, `AppTheme.retroText()`, etc.).
    - Wrap UI panels in [`TerminalContainer`](lib/widgets/terminal_container.dart) and use [`TerminalButton`](lib/widgets/terminal_button.dart).
 3. **Mandatory Indian Date Format (`DD-MM-YYYY`):**
    - **All dates displayed in UI, terminal logs, changelogs (`CHANGELOG.md`), and markdown documentation MUST strictly use Indian numerical date formatting (`DD-MM-YYYY` or `DD-MM-YY`).**
    - Never use `YYYY-MM-DD` or `MM/DD/YYYY` in human-facing text or documentation.
+4. **Zero Legacy Baggage Policy:**
+   - Target modern Flutter 3.50+ / Dart 3.14+ / Android API 26+ (Built-in Kotlin, AGP 9+, Gradle 9+) as the non-negotiable minimum baseline.
+   - **Never** add legacy shims or backward-compatibility workarounds for obsolete Android/Flutter versions (e.g. Android API < 24 qualifiers like `drawable-v21`, legacy Kotlin Gradle Plugin `kotlin-android`, or deprecated `package:flutter/material.dart`).
+   - Ruthlessly prune dead code, unused model fields, orphaned asset qualifiers, and abandoned color tokens.
 
 ---
 
@@ -38,6 +43,7 @@ Overlord is a post-apocalyptic expedition and scavenger management RPG rendered 
 | **Medical Bay Crafting** | `GameConfig.medbayUnlockCost = 10000`, `medbayCraftingTime = 240` | Requires 10,000 Caps to unlock. Synthesis takes 240 minutes (4 hours) requiring `1x med_syringe`, `2x med_herb`, `1x chem_expired` to yield `2x c_medkit`. |
 | **Offline Catch-Up Cap** | `GameConfig.maxOfflineMinutes = 4320` | Maximum 3 days (4,320 minutes) simulated on app resume. |
 | **Revive Penalty** | `GameConfig.minReviveCost = 20` | Reviving a fallen dweller costs 10% of their carried caps (min 20 caps). Resets state to `returning` with 25% max HP. |
+| **Combat Resolution** | `IncidentHandler` | Exactly 2 rounds of reciprocal exchange per encounter before disengagement/triage. |
 
 ---
 
@@ -54,6 +60,8 @@ lib/
 test/
 ├── unit/                        # Engine, combat, model, and RNG unit tests
 └── widget/                      # Screen and widget tests
+tool/
+└── verify_invariants.dart       # Automated Invariant Gate (formatting, <400 lines, offline, analyze, tests)
 docs/
 └── MASTER_BACKLOG.md            # True product roadmap & anti-goals
 ```
@@ -96,4 +104,5 @@ You are being managed by a strict Product Manager. Follow this exact workflow:
 - ❌ **Adding presentation files exceeding 400 lines.**
 - ❌ **Breaking core gameplay invariants** (10kg backpack cap, 50-slot stash cap, 2-round combat, emergency auto-medkit).
 - ❌ **Using non-Indian date formats (`YYYY-MM-DD` or `MM/DD/YYYY`) in changelogs or markdown documentation.** (Must use `DD-MM-YYYY`).
+- ❌ **Re-introducing legacy shims or deprecated framework imports** (e.g. `package:flutter/material.dart`, legacy Kotlin Gradle Plugin `kotlin-android`, or obsolete API < 24 qualifiers).
 - ❌ **Failing static analysis or breaking automated tests.**

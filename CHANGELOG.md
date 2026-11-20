@@ -5,56 +5,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [0.2.2] — 12-11-2026 — Flutter 3.50 & Dart 3.14 Framework Modernization
+## [0.1.0] — 21-11-2026 — Vault Bunker 42 OS Baseline Release
 
 ### Added
-- **First-Party `material_ui` Integration**: Integrated `package:material_ui` (v1.11.0) adhering strictly to Flutter 3.50 framework modularization while preserving the 100% offline pledge (zero network dependencies, zero telemetry).
-- **Gradle 9.5 & AGP 9.3 Alignment**: Upgraded Android build system to Gradle 9.5.0, Android Gradle Plugin 9.3.1, and Kotlin 2.4.20 with deterministic Java 24 JVM toolchain isolation (`jvmToolchain(24)`).
+- **Core Wasteland Simulation**: Minute-by-minute simulation loop with passive lore, random survival acts, NPC encounters, and barricaded POI exploration.
+- **Tactical Combat Loop**: 2-round reciprocal turn exchange with automatic emergency medkit triage when vitals drop $\le 50\%$ HP.
+- **Vault Armory & Economy**: 50-slot Vault Armory stash, Requisition Market trading, and weightless Bottle Caps currency.
+- **Medical Bay Synthesis**: Unlockable crafting facility (10,000 Caps) synthesizing emergency medkits (`2x c_medkit`) over 240 simulated minutes.
+- **100% Offline & Tracker-Free Architecture**: Zero remote network SDKs, zero telemetry, local asset bundling, and clean production Android manifest.
+- **AI Governance & Constitution (`AGENTS.md`)**: Comprehensive ClinicOS-grade operating constitution, strict PM protocol, and zero-legacy policy.
+- **Automated Invariant Verification Gate (`tool/verify_invariants.dart`)**: Single-command verification covering Dart formatting, <400 presentation line limits, offline pledge checks, static analysis (0 warnings), and unit/widget test suite.
+- **Comprehensive Automated Test Suite**: 57 unit and widget tests covering models, simulation engines, combat math, facilities, offline catch-up, and screens.
+- **Deterministic RNG Testing**: Seedable pseudo-random generator API (`EngineHelpers.setRng()` / `EngineHelpers.resetRng()`) for reproducible simulation and combat tests.
+- **Save State Versioning**: Robust local save system with `schemaVersion: 1` header in `overseer_save_data`.
+- **First-Party `material_ui` Integration**: Integrated `package:material_ui` (v1.11.1) adhering to modern Flutter framework modularization.
+- **Modern Android Build Pipeline**: Upgraded to Gradle 9.5.0, Android Gradle Plugin 9.3.1, and Built-in Kotlin (`android.builtInKotlin=true`).
+- **Master Roadmap Backlog (`docs/MASTER_BACKLOG.md`)**: Centralized specification for Radio Beacon dweller recruitment, Armory sorting, and Hydroponics Greenhouse.
 
 ### Changed
-- **Migrated Deprecated Material Imports**: Modernized 20 import statements across 17 presentation files and 3 widget test files from `package:flutter/material.dart` to `package:material_ui/material_ui.dart`.
-- **Environment Baseline**: Upgraded Dart SDK environment constraint to `^3.14.0` in `pubspec.yaml`.
+- **Modernized Material Imports**: Migrated all presentation and widget test files from deprecated `package:flutter/material.dart` to `package:material_ui/material_ui.dart`.
+- **Modularized Screen Architecture**: Decomposed monolithic screens into focused sub-400-line components (`DwellerVitalsCard`, `DwellerInventorySheet`, `DwellerItemInspectDialog`).
+- **Target Platform Baseline**: Target modern Flutter 3.50+ / Dart 3.14+ / Android API 26+ environment with deterministic Java 24 toolchain isolation.
+- **FOSS Documentation Topology**: Streamlined community guidelines and security documentation into `.github/`.
+- **Strict Lint Profile**: Activated `unreachable_from_main`, `avoid_unused_constructor_parameters`, `cancel_subscriptions`, `close_sinks`, `unnecessary_late`, and `use_build_context_synchronously` in `analysis_options.yaml`.
 
----
-
-## [0.2.1] — 29-10-2026 — AI Governance Constitution, Invariant Gate & Roadmap Backlog
-
-### Added
-- **Automated Invariant Verification Gate (`tool/verify_invariants.dart`):** Single-command verification checking repository Dart formatting, <400 line limits, 100% offline pledge (no network SDKs or internet permissions), `flutter analyze` (0 warnings), and full unit/widget test suite pass rate.
-- **AI Maintainer Constitution (`AGENTS.md`):** Updated with ClinicOS-grade operating constitution, Strict PM Interaction Protocol (Clarify & Plan First -> Respect Conventions -> Verification Gate), and explicit Codebase Red Lines.
-- **Master Roadmap Backlog (`docs/MASTER_BACKLOG.md`):** Single source of truth for unbuilt features (Radio Beacon Dweller Recruitment, 50-slot Armory quick-sort, procedural retro synthesizer SFX, Hydroponics Greenhouse, and explicit Anti-Goals).
-
----
-
-## [0.2.0] — 09-10-2026 — Modular Architecture & Test Suite Expansion
-
-### Added
-- **AI-Readiness Architecture**: Introduced `AGENTS.md` specifying immutable gameplay invariants, CRT design tokens, offline pledge, and development rules for autonomous AI maintenance.
-- **Comprehensive Automated Test Suite**: Added 57 unit and widget tests across models, engines, utilities, and screens (combat DR, weight limits, facilities, offline catch-up, and serialization).
-- **Deterministic Simulation**: Added `EngineHelpers.setRng()` and `EngineHelpers.resetRng()` for reproducible rolls in unit tests.
-- **Save State Schema Versioning**: Added `schemaVersion: 1` header in `overseer_save_data` to ensure safe, backwards-compatible data migrations.
-- **CRT Radar Fallback**: Added in-universe terminal wireframe/radar fallback for missing POI images in `EventModal`.
-- **Lifecycle & Timer Teardown**: Added `GameManager.stopGameLoop()` and `_isDisposed` guards for clean background timer teardown.
-
-### Changed
-- **Modularized Dweller Screen**: Decomposed the 1,113-line monolithic `DwellerScreen` into bite-sized reusable components:
-  - `DwellerVitalsCard` (vitals header, portrait, segmented HP bar, and sanity glitches)
-  - `DwellerItemInspectDialog` (item inspection, consumption, equip, and stash transfers)
-  - `DwellerInventorySheet` (equipment and 50-slot armory management sheet)
-  - Reduced `DwellerScreen` from 1,113 lines down to 235 lines (< 400 line agent invariant).
-- **Documentation & FOSS Alignment**: Streamlined repository documentation topology, relocated community files (`CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`) to `.github/`, clarified tactical simulation RPG tagline, and synchronized `GAMEPLAY.md` and `AGENTS.md`.
+### Removed
+- **Dead Model Fields**: Pruned orphaned `medkits` counter from `Scavenger` model and character database (auto-medkit logic consumes physical `c_medkit` items from backpack).
+- **Abandoned Palette Tokens**: Removed 6 unused color declarations (`red400`, `green900`, `grey800`, `grey700`, `grey600`, `lightBlueAccent`) from `AppTheme`.
+- **Obsolete Android Qualifiers**: Deleted legacy Android 5.0 `drawable-v21` resource directory and unified `launch_background.xml` under base `drawable/`.
+- **Legacy Kotlin Gradle Plugin**: Removed `id("kotlin-android")` in favor of AGP Built-in Kotlin.
 
 ### Fixed
-- Fixed unmanaged `Future.delayed` timer in `IncidentHandler.handleCombatEncounter` with `manager.isDisposed` lifecycle guards.
-
----
-
-## [0.1.0] — 09-10-2026 — Initial Open Source Release
-
-### Added
-- Initial open-source release of Vault Bunker 42 OS.
-- Wasteland exploration loop with minute-by-minute incident simulation.
-- 2-round tactical combat with auto-medkit emergency triage.
-- 50-slot Vault Armory stash and Requisition Market.
-- Medical Bay chemical synthesis system.
-- 100% offline and tracker-free privacy architecture.
+- **Timer Lifecycle Leak**: Patched unmanaged timers in `IncidentHandler.handleCombatEncounter` and `GameManager.startGameLoop` with `_isDisposed` lifecycle guards.
+- **Missing POI Fallback**: Added in-universe terminal CRT wireframe and radar scan animation when location art is unavailable.

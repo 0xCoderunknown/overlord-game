@@ -89,7 +89,6 @@ class Scavenger {
   String imagePath;
   int hp;
   int maxHp;
-  int medkits;
   ScavState state;
   String? pendingPoiId;
   List<Item> backpack;
@@ -108,7 +107,6 @@ class Scavenger {
     this.imagePath = 'assets/images/char/overseer.webp',
     this.hp = 100,
     this.maxHp = 100,
-    this.medkits = 0,
     this.state = ScavState.idle,
     this.pendingPoiId,
     List<Item>? backpack,
@@ -221,7 +219,6 @@ class Scavenger {
     'imagePath': imagePath,
     'hp': hp,
     'maxHp': maxHp,
-    'medkits': medkits,
     'state': state.name,
     'pendingPoiId': pendingPoiId,
     'backpack': backpack.map((i) => i.toJson()).toList(),
@@ -242,7 +239,6 @@ class Scavenger {
         json['imagePath'] as String? ?? 'assets/images/char/overseer.webp',
     hp: json['hp'] as int? ?? 100,
     maxHp: json['maxHp'] as int? ?? 100,
-    medkits: json['medkits'] as int? ?? 0,
     state: ScavState.values.firstWhere(
       (e) => e.name == json['state'],
       orElse: () => ScavState.idle,

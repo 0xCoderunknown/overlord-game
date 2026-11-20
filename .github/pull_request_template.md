@@ -9,8 +9,7 @@ Brief summary of the changes introduced in this pull request.
 - [ ] Build / CI configuration
 
 ## Testing Performed
-- [ ] Run `flutter analyze` (zero issues found)
-- [ ] Run `flutter test` (all tests pass)
+- [ ] Run `dart run tool/verify_invariants.dart` (all 5 invariant gates pass: format, line limits, offline pledge, analyze, tests)
 - [ ] Manual testing on Android device / emulator
 
 ## Checklist

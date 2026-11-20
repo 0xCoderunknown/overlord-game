@@ -49,7 +49,6 @@ class CharacterDatabase {
       name: template['name'],
       maxHp: template['maxHp'],
       hp: template['maxHp'],
-      medkits: 0,
       stress: 0,
       hiddenTrait: assignedTrait,
       state: ScavState.idle,

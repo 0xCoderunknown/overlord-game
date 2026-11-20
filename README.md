@@ -10,17 +10,17 @@
         [ VAULT BUNKER 42 // TACTICAL COMMAND & EXPEDITION SIMULATION ]
 ```
 
-[![Release: v0.2.0-alpha](https://img.shields.io/badge/Release-v0.2.0--alpha-green.svg)](https://github.com/0xCoderunknown/overlord-game/releases)
+[![Release: v0.1.0-alpha](https://img.shields.io/badge/Release-v0.1.0--alpha-green.svg)](https://github.com/0xCoderunknown/overlord-game/releases)
 [![CI](https://github.com/0xCoderunknown/overlord-game/actions/workflows/ci.yml/badge.svg)](https://github.com/0xCoderunknown/overlord-game/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)](https://flutter.dev)
+[![Flutter](https://img.shields.io/badge/Flutter-3.50+-02569B?logo=flutter)](https://flutter.dev)
 [![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android)](https://www.android.com)
 [![Privacy](https://img.shields.io/badge/Privacy-100%25%20Offline%20%7C%20No%20Trackers-brightgreen)](#-privacy--offline-pledge)
 [![F-Droid](https://img.shields.io/badge/F--Droid-Ready-blue?logo=f-droid)](metadata/io.github.coder_unknown.overlord.yml)
 [![Field Manual](https://img.shields.io/badge/Manual-GAMEPLAY.md-orange)](GAMEPLAY.md)
 [![Agents](https://img.shields.io/badge/AI%20Maintained-AGENTS.md-blueviolet)](AGENTS.md)
 
-> ⚠️ **EARLY ALPHA NOTICE (v0.2.0):**  
+> ⚠️ **EARLY ALPHA NOTICE (v0.1.0):**  
 > This game is in active development with an autonomous AI-maintained architecture.
 
 **Overlord** is a post-apocalyptic expedition and scavenger management RPG rendered through an atmospheric, green-phosphor CRT retro-terminal interface. 
@@ -105,9 +105,9 @@ $$\text{1x Used Syringe} + \text{2x Irradiated Herbs} + \text{1x Expired Chemica
 ## 🛠️ BUILDING FROM SOURCE
 
 ### Prerequisites
-* [Flutter SDK](https://docs.flutter.dev/get-started/install) (`^3.13.4` or later)
-* Android SDK (Target API 34+)
-* Java Development Kit (JDK 17)
+* [Flutter SDK](https://docs.flutter.dev/get-started/install) (`3.50+` / Dart `3.14+`)
+* Android SDK (API 26+)
+* Java Development Kit (JDK 24+ / Gradle 9.5+)
 
 ### 1. Clone & Dependencies
 ```bash
@@ -117,13 +117,10 @@ cd overlord-game
 flutter pub get
 ```
 
-### 2. Verify Code & Test Suite
+### 2. Verify Code & Invariant Gates
 ```bash
-# Static analysis (zero warnings)
-flutter analyze
-
-# Unit and widget test suite
-flutter test
+# Automated Invariant Gate (formatting, <400 lines, offline pledge, analyze, tests)
+dart run tool/verify_invariants.dart
 ```
 
 ### 3. Run on Device / Emulator
@@ -169,7 +166,12 @@ lib/
 │   ├── app_theme.dart           # CRT terminal color palettes & retro typography
 │   ├── engine_helpers.dart      # Safe RNG, time math, and corruption glitcher
 │   └── game_config.dart         # Global constants (ticks, costs, limits)
-└── widgets/                     # Reusable terminal UI components
+├── widgets/                     # Reusable terminal UI components
+test/                            # 100% offline unit & widget test suite
+tool/
+└── verify_invariants.dart       # Automated Invariant Gate (formatting, <400 lines, offline, analyze, tests)
+docs/
+└── MASTER_BACKLOG.md            # Master roadmap, unbuilt features, and anti-goals
 ```
 
 ---

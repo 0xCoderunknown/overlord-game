@@ -3,14 +3,14 @@ description: "Post-apocalyptic wasteland expedition & scavenger management text/
 repository: https://github.com/0xCoderunknown/overlord-game
 issue_tracker: https://github.com/0xCoderunknown/overlord-game/issues
 publish_to: 'none'
-version: 0.2.2+4
+version: 0.1.0+1
 environment:
   sdk: ^3.14.0
 
 dependencies:
   flutter:
     sdk: flutter
-  material_ui: ^1.11.0
+  material_ui: ^1.11.1
   provider: ^6.1.5+1
   shared_preferences: ^2.5.6
 
