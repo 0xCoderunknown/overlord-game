@@ -5,6 +5,9 @@ import 'game_config.dart';
 class EngineHelpers {
   static Random _random = Random();
 
+  /// Access current active RNG instance (seedable)
+  static Random get rng => _random;
+
   /// Set custom or seeded RNG for deterministic testing
   static void setRng(Random customRandom) {
     _random = customRandom;

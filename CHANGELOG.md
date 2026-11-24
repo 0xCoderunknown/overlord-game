@@ -5,6 +5,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [0.1.1] — 25-11-2026 — Architecture & Single Source of Truth Hardening
+
+### Added
+- **Item Visual Tokens Single Source of Truth**: Centralized `AppTheme.getItemTierColor(tier)` and `AppTheme.getItemTypeIcon(type)` across all inventory, stash, inspect, and market screens.
+- **Dedicated Equipment Card Component**: Extracted `DwellerEquippedCard` (`lib/widgets/dweller_equipped_card.dart`), preemptively reducing `DwellerInventorySheet` from 398 to 271 lines.
+- **Deterministic Seedable RNG Accessor**: Added `EngineHelpers.rng` getter, unifying recruit ID generation (`CharacterDatabase`) and item UUID generation (`Item.fromDatabase`) under controllable seedable RNG.
+- **Expanded Automated Tests**: Added unit and widget tests for `DwellerEquippedCard`, `AppTheme` visual tokens, and `EngineHelpers.rng` (expanding test suite from 57 to 62 tests).
+
+### Changed
+- **Modularized Presentation Layer**: Decomposed `DwellerInventorySheet` to safely sit below the 300-line warning threshold (271 lines), eliminating invariant violation risks.
+- **Unified Backpack Weight Invariant**: Replaced ad-hoc backpack weight filters with `scavenger.currentWeight` and `GameConfig.maxBackpackWeight`.
+
+### Removed
+- **Redundant Security Policy (`.github/SECURITY.md`)**: Removed unnecessary vulnerability disclosure file for a 100% offline, local client-side game.
+- **Duplicate Visual Helpers**: Pruned redundant `_getItemColor` and `_getIconForType` methods duplicated across `DwellerInventorySheet`, `DwellerItemInspectDialog`, `ItemGridCard`, `StashScreen`, and `MarketScreen`.
+- **Unused Math Import**: Pruned `dart:math` from `CharacterDatabase`.
+
+---
+
 ## [0.1.0] — 21-11-2026 — Vault Bunker 42 OS Baseline Release
 
 ### Added
@@ -26,7 +45,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **Modernized Material Imports**: Migrated all presentation and widget test files from deprecated `package:flutter/material.dart` to `package:material_ui/material_ui.dart`.
 - **Modularized Screen Architecture**: Decomposed monolithic screens into focused sub-400-line components (`DwellerVitalsCard`, `DwellerInventorySheet`, `DwellerItemInspectDialog`).
 - **Target Platform Baseline**: Target modern Flutter 3.50+ / Dart 3.14+ / Android API 26+ environment with deterministic Java 24 toolchain isolation.
-- **FOSS Documentation Topology**: Streamlined community guidelines and security documentation into `.github/`.
+- **FOSS Documentation Topology**: Streamlined community guidelines and documentation into `.github/` and root routing table.
 - **Strict Lint Profile**: Activated `unreachable_from_main`, `avoid_unused_constructor_parameters`, `cancel_subscriptions`, `close_sinks`, `unnecessary_late`, and `use_build_context_synchronously` in `analysis_options.yaml`.
 
 ### Removed

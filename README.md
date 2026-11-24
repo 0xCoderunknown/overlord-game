@@ -29,40 +29,38 @@ As the **Overseer of Vault Bunker 42**, you monitor expedition telemetry feeds, 
 
 ---
 
+## 📚 DOCUMENTATION DIRECTORY (SINGLE SOURCE OF TRUTH)
+
+To maintain architectural integrity and prevent documentation drift, each domain is governed by a canonical single source of truth:
+
+| Document | Purpose & Domain | Target Audience |
+|---|---|---|
+| 📖 [**GAMEPLAY.md**](GAMEPLAY.md) | **Overseer Field Manual:** Complete combat math, encounter RNG tables, enemy bestiary, weapon/armor stats, and crafting recipes. | Players & Overseers |
+| 🛡️ [**AGENTS.md**](AGENTS.md) | **Autonomous AI Constitution:** Non-negotiable system rules, frozen dependencies, line limits, and invariant verification gates. | Autonomous AI Agents |
+| 🎯 [**docs/MASTER_BACKLOG.md**](docs/MASTER_BACKLOG.md) | **Master Product Roadmap:** Tiered specifications for pending vault systems, facilities, and explicit product anti-goals. | Product Planning |
+| 📋 [**CHANGELOG.md**](CHANGELOG.md) | **Release History:** Chronological log of all additions, modifications, and removals formatted to Indian date standard (`DD-MM-YYYY`). | Community & Releases |
+
+---
+
 ## 🎮 THE GAMEPLAY EXPERIENCE
 
-### 🖥️ The Retro-Terminal Interface
-The interface simulates an authentic late-20th-century bunker mainframe with monospaced typography, live incident tickers, visual glitch effects, and CRT-styled panel containers.
+### 🖥️ Authentic CRT Retro-Terminal
+Simulates a late-20th-century hardened bunker mainframe using monospaced typography, live incident tickers, visual glitch effects, and CRT green-phosphor panels.
 
 ### 🧭 Autonomous Wasteland Expeditions
-Dispatch dwellers into the irradiated ruins. The simulation engine runs minute-by-minute with a Master RNG Table resolving:
-* **Over 30 Multi-Line Lore Sequences**: Environmental narratives and classic homage callbacks (*Fallout, Metro 2033, S.T.A.L.K.E.R., Dark Souls, Resident Evil*).
-* **Survival Encounters**: Rad-storms, abandoned campsites, and contaminated puddles.
-* **Wandering NPCs**: Caravan doctors offering field triage, neutral patrols, con artists, and muggers.
+Dispatch scavengers into irradiated ruins. The simulation loop processes minute-by-minute ticks across 30+ multi-line environmental stories, wandering caravan medics, scam artists, and fortified Points of Interest (POIs).
 
 ### ⚔️ Tactical Combat & Emergency Auto-Triage
-* 2-round combat exchanges calculated against enemy damage profiles and dweller armor Damage Reduction (DR).
-* **Pre-Combat Tactics**: Stealth ghosting, lethal player ambushes (150% damage), or dangerous enemy surprise attacks.
-* **Auto-Medkit Protocol**: When dweller vitals plummet below 50% HP, combat stimulants automatically deploy to prevent flatlining.
+Turn-based combat resolves via reciprocal exchanges factoring in weapon spreads and armor Damage Reduction (DR). When vitals drop to $\le 50\%$ HP, combat stims auto-inject to prevent casualty flatlines.
 
-### 🧠 The Sanity & Hallucination Engine
-The wasteland erodes sanity. Dwellers accumulate stress during expeditions. Recruits may carry secret afflictions:
-* **PTSD**: Screen burns crimson during trauma spikes.
-* **Paranoia**: Dwellers violently refuse chemical injections at high stress levels.
-* **Psychosis**: Text labels and live logs corrupt into scrambled zalgo/cyber-glyph runes.
-* **The Gaslight Reset**: Returning to the command center immediately wipes the visual hallucination, leaving you to wonder if the glitch was real.
+### 🧠 Sanity & Hallucination Engine
+The wasteland erodes minds. Explorers accumulate stress and may manifest hidden psychological afflictions (PTSD, Paranoia, Psychosis) that distort the terminal UI until gaslight-reset at the blast doors.
 
-### 🛠️ Vault Engineering: The Medical Bay
-Restore the ruined Medical Bay (`10,000 Caps`) to synthesize **Wasteland Medkits** using scavenged battlefield components:
-$$\text{1x Used Syringe} + \text{2x Irradiated Herbs} + \text{1x Expired Chemicals} \xrightarrow{\text{4 Hours}} \text{2x Wasteland Medkits}$$
+### 🛠️ Vault Engineering & Armory Economy
+Unlock the ruined Medical Bay to synthesize vital stims from raw battlefield components. Manage a strict 10-slot backpack limit and a 50-slot Vault Armory with liquidation access to the Requisition Market.
 
-### 🎒 Auto-Equip & Armory Stash
-* **Strict 10-Slot Backpacks**: Dwellers know when to quit; when weight reaches 10, they automatically head home.
-* **Tactical Auto-Equip**: Finding higher-tier or higher-damage gear in the field automatically equips it, cycling older gear into the backpack.
-* **50-Slot Armory**: Store weapons, armor, food, and craft materials, or liquidate stacks for Caps on the Requisition Market.
-
-> 📖 **Looking for exact drop rates, combat math, enemy stat sheets, and complete weapon tables?**  
-> Check out the complete [**Overseer Field Manual (GAMEPLAY.md)**](GAMEPLAY.md).
+> 📖 **Need exact drop rates, enemy damage charts, and complete item databases?**  
+> Consult the canonical [**Overseer Field Manual (GAMEPLAY.md)**](GAMEPLAY.md).
 
 ---
 

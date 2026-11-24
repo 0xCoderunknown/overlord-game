@@ -1,12 +1,24 @@
 import 'dart:math';
 
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:overlord/utils/app_theme.dart';
 import 'package:overlord/utils/engine_helpers.dart';
 
 void main() {
   group('EngineHelpers', () {
     tearDown(() {
       EngineHelpers.resetRng();
+    });
+
+    test('rng getter exposes active seedable random instance', () {
+      EngineHelpers.setRng(Random(999));
+      final val1 = EngineHelpers.rng.nextInt(100);
+
+      EngineHelpers.setRng(Random(999));
+      final val2 = EngineHelpers.rng.nextInt(100);
+
+      expect(val1, equals(val2));
     });
 
     test('rollStat produces values within bounds', () {
@@ -74,6 +86,27 @@ void main() {
       expect(corrupted.contains('\n'), isTrue);
       expect(corrupted.contains('>'), isTrue);
       expect(corrupted.length, equals(text.length));
+    });
+  });
+
+  group('AppTheme visual tokens', () {
+    test('getItemTierColor maps tiers accurately to terminal palette', () {
+      expect(AppTheme.getItemTierColor(1), equals(AppTheme.grey));
+      expect(AppTheme.getItemTierColor(2), equals(AppTheme.blueAccent));
+      expect(AppTheme.getItemTierColor(3), equals(AppTheme.orangeAccent));
+      expect(AppTheme.getItemTierColor(0), equals(AppTheme.terminalGreen));
+    });
+
+    test('getItemTypeIcon maps item categories accurately', () {
+      expect(
+        AppTheme.getItemTypeIcon('consumable'),
+        equals(Icons.medical_services),
+      );
+      expect(AppTheme.getItemTypeIcon('food'), equals(Icons.medical_services));
+      expect(AppTheme.getItemTypeIcon('armor'), equals(Icons.security));
+      expect(AppTheme.getItemTypeIcon('scrap'), equals(Icons.recycling));
+      expect(AppTheme.getItemTypeIcon('material'), equals(Icons.science));
+      expect(AppTheme.getItemTypeIcon('weapon'), equals(Icons.handyman));
     });
   });
 }

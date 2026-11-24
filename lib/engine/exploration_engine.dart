@@ -105,12 +105,8 @@ class ExplorationEngine {
             }
           }
 
-          int currentWeight = scavenger.backpack
-              .where((i) => i.id != 'loot_caps')
-              .length;
-
           if (scavenger.state == ScavState.exploring &&
-              currentWeight >= GameConfig.maxBackpackWeight) {
+              scavenger.currentWeight >= GameConfig.maxBackpackWeight) {
             scavenger.state = ScavState.returning;
             scavenger.minutesToReturn = scavenger.minutesExplored ~/ 2;
             scavenger.logs.add(

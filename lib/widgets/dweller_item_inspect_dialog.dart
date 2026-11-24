@@ -29,30 +29,10 @@ class DwellerItemInspectDialog extends StatefulWidget {
 class _DwellerItemInspectDialogState extends State<DwellerItemInspectDialog> {
   bool _isInjecting = false;
 
-  Color _getItemColor(int tier) {
-    switch (tier) {
-      case 1:
-        return AppTheme.grey;
-      case 2:
-        return AppTheme.blueAccent;
-      case 3:
-        return AppTheme.orangeAccent;
-      default:
-        return AppTheme.terminalGreen;
-    }
-  }
-
-  IconData _getIconForType(String? type) {
-    if (type == 'consumable' || type == 'food') return Icons.medical_services;
-    if (type == 'armor') return Icons.security;
-    if (type == 'scrap') return Icons.recycling;
-    if (type == 'material') return Icons.science;
-    return Icons.handyman;
-  }
-
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
+    final itemColor = AppTheme.getItemTierColor(item.tier);
     final scav = widget.scavenger;
     final manager = widget.manager;
 
@@ -81,18 +61,15 @@ class _DwellerItemInspectDialogState extends State<DwellerItemInspectDialog> {
                   width: 64,
                   height: 64,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: _getItemColor(item.tier),
-                      width: 1,
-                    ),
+                    border: Border.all(color: itemColor, width: 1),
                     color: AppTheme.bgBlack,
                   ),
                   child: Image.asset(
                     imagePath,
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) => Icon(
-                      _getIconForType(item.type),
-                      color: _getItemColor(item.tier),
+                      AppTheme.getItemTypeIcon(item.type),
+                      color: itemColor,
                       size: 40,
                     ),
                   ),
@@ -105,7 +82,7 @@ class _DwellerItemInspectDialogState extends State<DwellerItemInspectDialog> {
                       Text(
                         item.name.toUpperCase(),
                         style: AppTheme.retroText(
-                          color: _getItemColor(item.tier),
+                          color: itemColor,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),

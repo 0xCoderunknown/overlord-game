@@ -34,11 +34,7 @@ class MarketScreen extends StatelessWidget {
                     height: 64,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: item.tier == 3
-                            ? AppTheme.orangeAccent
-                            : item.tier == 2
-                            ? AppTheme.blueAccent
-                            : AppTheme.grey,
+                        color: AppTheme.getItemTierColor(item.tier),
                         width: 1,
                       ),
                       color: AppTheme.bgBlack,
@@ -48,11 +44,7 @@ class MarketScreen extends StatelessWidget {
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         return Icon(
-                          item.type == 'consumable'
-                              ? Icons.medical_services
-                              : item.type == 'armor'
-                              ? Icons.security
-                              : Icons.handyman,
+                          AppTheme.getItemTypeIcon(item.type),
                           color: AppTheme.green,
                           size: 40,
                         );

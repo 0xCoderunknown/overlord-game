@@ -16,29 +16,9 @@ class ItemGridCard extends StatelessWidget {
     this.isEquipped = false,
   });
 
-  Color _getItemColor(int tier) {
-    switch (tier) {
-      case 1:
-        return AppTheme.grey;
-      case 2:
-        return AppTheme.blueAccent;
-      case 3:
-        return AppTheme.orangeAccent;
-      default:
-        return AppTheme.terminalGreen;
-    }
-  }
-
-  IconData _getIconForType(String? type) {
-    if (type == 'consumable' || type == 'food') return Icons.medical_services;
-    if (type == 'armor') return Icons.security;
-    if (type == 'scrap') return Icons.recycling;
-    if (type == 'material') return Icons.science;
-    return Icons.handyman;
-  }
-
   @override
   Widget build(BuildContext context) {
+    Color itemColor = AppTheme.getItemTierColor(item.tier);
     String statText = "";
     if (item.type == 'consumable') {
       statText = "HEAL: 50%";
@@ -55,7 +35,6 @@ class ItemGridCard extends StatelessWidget {
     }
 
     String imagePath = item.imagePath ?? 'assets/images/items/${item.id}.png';
-    Color itemColor = _getItemColor(item.tier);
 
     return InkWell(
       onTap: onTap,
@@ -91,7 +70,7 @@ class ItemGridCard extends StatelessWidget {
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         return Icon(
-                          _getIconForType(item.type),
+                          AppTheme.getItemTypeIcon(item.type),
                           color: itemColor.withValues(alpha: 0.8),
                           size: 48,
                         );

@@ -67,7 +67,7 @@ class Item {
   }) {
     return Item(
       id: generateUniqueId
-          ? "${data['id']}_${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(1000).toString().padLeft(3, '0')}"
+          ? "${data['id']}_${DateTime.now().millisecondsSinceEpoch}_${EngineHelpers.rng.nextInt(1000).toString().padLeft(3, '0')}"
           : data['id'],
       name: data['name'],
       type: data['type'] ?? 'misc',

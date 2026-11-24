@@ -39,4 +39,26 @@ class AppTheme {
       height: height,
     );
   }
+
+  // --- ITEM VISUAL HELPERS (SSOT) ---
+  static Color getItemTierColor(int tier) {
+    switch (tier) {
+      case 1:
+        return grey;
+      case 2:
+        return blueAccent;
+      case 3:
+        return orangeAccent;
+      default:
+        return terminalGreen;
+    }
+  }
+
+  static IconData getItemTypeIcon(String? type) {
+    if (type == 'consumable' || type == 'food') return Icons.medical_services;
+    if (type == 'armor') return Icons.security;
+    if (type == 'scrap') return Icons.recycling;
+    if (type == 'material') return Icons.science;
+    return Icons.handyman;
+  }
 }

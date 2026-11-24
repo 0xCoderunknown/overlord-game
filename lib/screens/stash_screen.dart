@@ -10,32 +10,12 @@ import '../widgets/item_grid_card.dart'; // THE NEW IMPORT
 class StashScreen extends StatelessWidget {
   const StashScreen({super.key});
 
-  // Helpers kept exclusively for the Inspection Modal Header
-  Color _getItemColor(int tier) {
-    switch (tier) {
-      case 1:
-        return AppTheme.grey;
-      case 2:
-        return AppTheme.blueAccent;
-      case 3:
-        return AppTheme.orangeAccent;
-      default:
-        return AppTheme.terminalGreen;
-    }
-  }
-
-  IconData _getIconForType(String? type) {
-    if (type == 'consumable' || type == 'food') return Icons.medical_services;
-    if (type == 'armor') return Icons.security;
-    if (type == 'material') return Icons.science;
-    return Icons.handyman;
-  }
-
   // =========================================================================
   // THE DUAL-ACTION INSPECTION MODAL (Kept intact for Sell Logic)
   // =========================================================================
   void _showItemInspectionModal(BuildContext context, Item item) {
     String imagePath = item.imagePath ?? 'assets/images/items/${item.id}.png';
+    Color itemColor = AppTheme.getItemTierColor(item.tier);
 
     showModalBottomSheet(
       context: context,
@@ -67,10 +47,7 @@ class StashScreen extends StatelessWidget {
                         width: 64,
                         height: 64,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            color: _getItemColor(item.tier),
-                            width: 1,
-                          ),
+                          border: Border.all(color: itemColor, width: 1),
                           color: AppTheme.bgBlack,
                         ),
                         child: Image.asset(
@@ -78,8 +55,8 @@ class StashScreen extends StatelessWidget {
                           fit: BoxFit.contain,
                           errorBuilder: (context, error, stackTrace) {
                             return Icon(
-                              _getIconForType(item.type),
-                              color: _getItemColor(item.tier),
+                              AppTheme.getItemTypeIcon(item.type),
+                              color: itemColor,
                               size: 40,
                             );
                           },
@@ -93,7 +70,7 @@ class StashScreen extends StatelessWidget {
                             Text(
                               item.name.toUpperCase(),
                               style: AppTheme.retroText(
-                                color: _getItemColor(item.tier),
+                                color: itemColor,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),

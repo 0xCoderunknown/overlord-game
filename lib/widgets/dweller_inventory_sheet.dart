@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../engine/game_manager.dart';
 import '../models/game_models.dart';
 import '../utils/app_theme.dart';
+import '../utils/game_config.dart';
+import 'dweller_equipped_card.dart';
 import 'dweller_item_inspect_dialog.dart';
 import 'item_grid_card.dart';
 
@@ -13,125 +15,6 @@ class DwellerInventorySheet extends StatelessWidget {
   final Scavenger scavenger;
 
   const DwellerInventorySheet({super.key, required this.scavenger});
-
-  Color _getItemColor(int tier) => tier == 2
-      ? AppTheme.blueAccent
-      : (tier == 3
-            ? AppTheme.orangeAccent
-            : (tier == 1 ? AppTheme.grey : AppTheme.terminalGreen));
-
-  IconData _getIconForType(String? type) {
-    if (type == 'consumable' || type == 'food') return Icons.medical_services;
-    if (type == 'armor') return Icons.security;
-    if (type == 'scrap') return Icons.recycling;
-    if (type == 'material') return Icons.science;
-    return Icons.handyman;
-  }
-
-  Widget _buildEquippedCard(
-    BuildContext context,
-    Scavenger liveScavenger,
-    GameManager manager,
-    String slotType,
-    Item? item,
-    StateSetter setModalState,
-  ) {
-    if (item == null) {
-      return Container(
-        height: 160,
-        decoration: BoxDecoration(
-          color: AppTheme.bgBlack,
-          border: Border.all(
-            color: AppTheme.green.withValues(alpha: 0.3),
-            width: 1,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            "NO ${slotType.toUpperCase()}",
-            style: AppTheme.retroText(
-              color: AppTheme.green.withValues(alpha: 0.5),
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      );
-    }
-
-    String statText = item.type == 'weapon'
-        ? "DMG: ${item.minStat}-${item.maxStat}"
-        : "DR: ${item.minStat}";
-    String imagePath = item.imagePath ?? 'assets/images/items/${item.id}.png';
-
-    return InkWell(
-      onTap: () {
-        if (liveScavenger.state == ScavState.idle) {
-          manager.unequipItem(liveScavenger, item.type);
-          setModalState(() {});
-        }
-      },
-      child: Container(
-        height: 160,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: AppTheme.bgBlack,
-          border: Border.all(color: AppTheme.terminalGreen, width: 1),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              item.name.toUpperCase(),
-              style: AppTheme.retroText(
-                color: _getItemColor(item.tier),
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) => Icon(
-                    _getIconForType(item.type),
-                    color: _getItemColor(item.tier).withValues(alpha: 0.8),
-                    size: 40,
-                  ),
-                ),
-              ),
-            ),
-            Text(
-              statText,
-              style: AppTheme.retroText(
-                color: AppTheme.terminalGreen,
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            if (liveScavenger.state == ScavState.idle)
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 4, 0, 0),
-                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
-                color: AppTheme.orangeAccent.withValues(alpha: 0.2),
-                child: Text(
-                  "TAP TO UNEQUIP",
-                  style: AppTheme.retroText(
-                    color: AppTheme.orangeAccent,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
 
   void _openInspectDialog(
     BuildContext context,
@@ -168,7 +51,6 @@ class DwellerInventorySheet extends StatelessWidget {
         final displayBackpackItems = liveScavenger.backpack
             .where((i) => i.id != 'loot_caps')
             .toList();
-        int trueWeight = displayBackpackItems.length;
 
         return Container(
           height: MediaQuery.of(context).size.height * 0.90,
@@ -217,24 +99,22 @@ class DwellerInventorySheet extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: _buildEquippedCard(
-                                    context,
-                                    liveScavenger,
-                                    manager,
-                                    "weapon",
-                                    liveScavenger.equippedWeapon,
-                                    setModalState,
+                                  child: DwellerEquippedCard(
+                                    scavenger: liveScavenger,
+                                    manager: manager,
+                                    slotType: "weapon",
+                                    item: liveScavenger.equippedWeapon,
+                                    onUnequip: () => setModalState(() {}),
                                   ),
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
-                                  child: _buildEquippedCard(
-                                    context,
-                                    liveScavenger,
-                                    manager,
-                                    "armor",
-                                    liveScavenger.equippedArmor,
-                                    setModalState,
+                                  child: DwellerEquippedCard(
+                                    scavenger: liveScavenger,
+                                    manager: manager,
+                                    slotType: "armor",
+                                    item: liveScavenger.equippedArmor,
+                                    onUnequip: () => setModalState(() {}),
                                   ),
                                 ),
                               ],
@@ -260,7 +140,7 @@ class DwellerInventorySheet extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "$trueWeight / 10",
+                              "${liveScavenger.currentWeight} / ${GameConfig.maxBackpackWeight}",
                               style: AppTheme.retroText(
                                 color: AppTheme.green,
                                 fontWeight: FontWeight.bold,

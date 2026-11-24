@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import '../models/game_models.dart';
 import '../utils/engine_helpers.dart';
 
@@ -45,7 +43,7 @@ class CharacterDatabase {
     }
 
     return Scavenger(
-      id: "${template['id']}_${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(1000).toString().padLeft(3, '0')}",
+      id: "${template['id']}_${DateTime.now().millisecondsSinceEpoch}_${EngineHelpers.rng.nextInt(1000).toString().padLeft(3, '0')}",
       name: template['name'],
       maxHp: template['maxHp'],
       hp: template['maxHp'],
